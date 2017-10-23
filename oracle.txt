@@ -1,0 +1,27 @@
+﻿Create Table Student( 
+ id varchar2(12) primary key, --通過序列和觸發器實現id的自增 
+ name varchar2(20) , 
+ age number(3) , 
+ sex number(1) 
+); 
+-------------------------------------自增主鍵--------------------------------------
+drop Sequence SEQ_STUDENT;
+Create Sequence SEQ_STUDENT 
+start with 1   --從1開始 
+increment by 1 --增量為1 
+minvalue 1 
+nomaxvalue;
+-------------------------------------觸發器----------------------------------------
+CREATE OR REPLACE TRIGGER STUDENT_AUTOINCREMENT
+BEFORE INSERT ON Student
+FOR EACH ROW
+BEGIN
+SELECT
+'MN' || TRIM(TO_CHAR(SEQ_STUDENT.CURRVAL, '0000000')) INTO :new.id
+FROM
+dual;
+END;
+
+-------------------------------------------------------------------------------------
+insert into STUDENT(id,name,age,sex) values(SEQ_STUDENT.nextval,'nanjing',23,1);
+insert into STUDENT(id,name,age,sex) values ('Q'||LPAD(to_char(SEQ_STUDENT.nextval),1,'0'),'IBMYY',23,1);
