@@ -20,7 +20,7 @@ INCREMENT BY 1
 START WITH 1 
 NOCACHE;
 
-------insert先寫在這裡
+------insert先寫在這裡-------
 
 INSERT INTO EMPLOYEE(EMP_NO, ID, PASSWORD, NAME, STATE) VALUES('EM'||(LPAD(to_char(EMP_SEQ.NEXTVAL),8,'0')), 'peter@forhouse.com', '123456' ,'吳神', 'Active');
 INSERT INTO EMPLOYEE(EMP_NO, ID, PASSWORD, NAME, STATE) VALUES('EM'||(LPAD(to_char(EMP_SEQ.NEXTVAL),8,'0')), 'yyy@forhouse.com', '123456' ,'楊宇茵', 'Active');
