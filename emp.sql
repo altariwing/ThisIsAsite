@@ -24,10 +24,13 @@ NOCACHE;
 
 ------insert先寫在這裡-------
 
-INSERT INTO EMPLOYEE(EMP_NO, ID, PASSWORD, NAME, STATE) VALUES('EM'||(LPAD(to_char(EMP_SEQ.NEXTVAL),8,'0')), 'peter@forhouse.com', '123456' ,'吳神', 'Active');
-INSERT INTO EMPLOYEE(EMP_NO, ID, PASSWORD, NAME, STATE) VALUES('EM'||(LPAD(to_char(EMP_SEQ.NEXTVAL),8,'0')), 'yyy@forhouse.com', '123456' ,'楊宇茵', 'Active');
-INSERT INTO EMPLOYEE(EMP_NO, ID, PASSWORD, NAME, STATE) VALUES('EM'||(LPAD(to_char(EMP_SEQ.NEXTVAL),8,'0')), 'dragon@forhouse.com', '123456' ,'趙子龍', 'Active');
------------------------------------------------------------------------------
+INSERT INTO EMPLOYEE(EMP_NO, ID, PASSWORD, NAME, STATE) VALUES('EM'||(LPAD(to_char
+(EMP_SEQ.NEXTVAL),8,'0')), 'peter@forhouse.com', '123456' ,'吳神', 'Active');
+INSERT INTO EMPLOYEE(EMP_NO, ID, PASSWORD, NAME, STATE) VALUES('EM'||(LPAD(to_char
+(EMP_SEQ.NEXTVAL),8,'0')), 'yyy@forhouse.com', '123456' ,'楊宇茵', 'Active');
+INSERT INTO EMPLOYEE(EMP_NO, ID, PASSWORD, NAME, STATE) VALUES('EM'||(LPAD(to_char
+(EMP_SEQ.NEXTVAL),8,'0')), 'dragon@forhouse.com', '123456' ,'趙子龍', 'Active');
+------------------------------
 CREATE TABLE BK_FUNCTION(
 FUNCTION_NO NUMBER(10),
 NAME VARCHAR2(40) NOT NULL, 
@@ -35,21 +38,40 @@ DESCRIBE VARCHAR2(100) NOT NULL,
 STATE VARCHAR2(10) NOT NULL,
 UPDATE_TIME TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 CONSTRAINT FUNCTION_NO_PK PRIMARY KEY(FUNCTION_NO));
---xxxxxxxxxx---------------------------------------------------------------------------
+
+DROP SEQUENCE BK_FUNCTION_NO;
+
+CREATE SEQUENCE BK_FUNCTION_NO
+INCREMENT BY 1 
+START WITH 100 
+NOMAXVALUE
+NOCYCLE
+NOCACHE;
+
+INSERT INTO BK_FUNCTION(FUNCTION_NO, NAME, DESCRIBE, STATE) 
+VALUES(BK_FUNCTION_NO.NEXTVAL, '管理員工', '管理後台帳號、後台帳號權限' ,'On');
+INSERT INTO BK_FUNCTION(FUNCTION_NO, NAME, DESCRIBE, STATE) 
+VALUES(BK_FUNCTION_NO.NEXTVAL, '審核權限', '審核房仲註冊、廠商註冊' ,'On');
+INSERT INTO BK_FUNCTION(FUNCTION_NO, NAME, DESCRIBE, STATE) 
+VALUES(BK_FUNCTION_NO.NEXTVAL, '維護房屋資料', '房屋資料更新檢視、爬蟲開關' ,'Test');
+
+--xxxxxxxxxx----------------------
 CREATE TABLE EMPLOYEE_AUTH(
 EMP_NO VARCHAR2(10) NOT NULL,
 FUNCTION_NO NUMBER(10) NOT NULL,
 TIMESTAMP  TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 EDITOR VARCHAR2(10),
 CONSTRAINT EMP_NO_FK FOREIGN KEY (EMP_NO) REFERENCES EMPLOYEE(EMP_NO),
-CONSTRAINT FUNCTION_NO_FK FOREIGN KEY (FUNCTION_NO) REFERENCES BK_FUNCTION(FUNCTION_NO),
+CONSTRAINT FUNCTION_NO_FK FOREIGN KEY (FUNCTION_NO) REFERENCES BK_FUNCTION
+(FUNCTION_NO),
 CONSTRAINT EMPLOYEE_AUTH_PK PRIMARY KEY(EMP_NO,FUNCTION_NO));
 
---xxxxxxxxxx---------------------------------------------------------------------------
+--xxxxxxxxxx-----------------------
 
 
 
-DROP TABLE Product_Orde;
+
+DROP TABLE Product_Order;
 CREATE TABLE Product_Order(
 Order_No NUMBER(10) NOT NULL, 
 Member_No NUMBER(10) NOT NULL,
@@ -64,10 +86,10 @@ CP_No VARCHAR2(10)
 );
 
 
------------------------------------------------------------------------------
+-------------------------------------------------------------
 
-DROP TABLE Product_Orde;
-CREATE TABLE Product_Order(
+DROP TABLE Order_Detail;
+CREATE TABLE Order_Detail(
 Order_No NUMBER(10) NOT NULL,
 Product_No NUMBER(10) NOT NULL,
 Unit_price NUMBER(10),
