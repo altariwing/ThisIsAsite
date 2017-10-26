@@ -19,6 +19,12 @@ CREATE SEQUENCE EMP_SEQ
 INCREMENT BY 1 
 START WITH 1 
 NOCACHE;
+
+------insert先寫在這裡
+
+INSERT INTO EMPLOYEE(EMP_NO, ID, PASSWORD, NAME, STATE) VALUES('EM'||(LPAD(to_char(EMP_SEQ.NEXTVAL),8,'0')), 'peter@forhouse.com', '123456' ,'吳神', 'Active');
+INSERT INTO EMPLOYEE(EMP_NO, ID, PASSWORD, NAME, STATE) VALUES('EM'||(LPAD(to_char(EMP_SEQ.NEXTVAL),8,'0')), 'yyy@forhouse.com', '123456' ,'楊宇茵', 'Active');
+INSERT INTO EMPLOYEE(EMP_NO, ID, PASSWORD, NAME, STATE) VALUES('EM'||(LPAD(to_char(EMP_SEQ.NEXTVAL),8,'0')), 'dragon@forhouse.com', '123456' ,'趙子龍', 'Active');
 -----------------------------------------------------------------------------
 CREATE TABLE BK_FUNCTION(
 FUNCTION_NO NUMBER(10),
@@ -52,7 +58,7 @@ Seller_Rate NUMBER(2),
 Member_Rate NUMBER(2),
 Member_Review VARCHAR2(30),
 params CLOB,
-CP_No NUMBER(10)
+CP_No VARCHAR2(10)
 );
 
 
