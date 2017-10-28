@@ -1,0 +1,6 @@
+﻿UPDATE EMPLOYEE 
+set EMP_ID='yyy@forhouse.com', EMP_PSW='123456', EMP_NAME='楊宇茵',
+EMP_LSTLOG=CURRENT_TIMESTAMP, EMP_BADLOG=CURRENT_TIMESTAMP, EMP_BADLOGTRY=1 ,EMP_STATE='Active',EMP_NEWDATE=CURRENT_TIMESTAMP 
+where EMP_NO = 'EM00000003';
+
+Exception in thread "main" java.lang.RuntimeException: A database error occured. 無效的資料欄索引
