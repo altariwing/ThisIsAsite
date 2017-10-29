@@ -12,3 +12,6 @@ DELETE FROM EMPLOYEE where EMP_NO = 'EM00000001';
 SELECT * FROM EMPLOYEE WHERE EMP_NO = 'EM00000002';
 
 SELECT * FROM EMPLOYEE;
+
+
+http://localhost:8081/ThisIsASite/EmployeeServlet?action=getAll
