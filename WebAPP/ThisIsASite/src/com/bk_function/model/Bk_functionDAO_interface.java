@@ -18,12 +18,12 @@ public interface Bk_functionDAO_interface {
 	public void insert(Bk_functionVO Bk_functionVO);
 	
 	/**
-	 * update that emp_no's row 
+	 * update that BKF_NO's row 
 	 * */
 	public void update(Bk_functionVO Bk_functionVO);
 	
 	/**
-	 * delete that emp_no's row 
+	 * delete that BKF_NO's row 
 	 * */
 	public void delete(String bkf_no);
 	
