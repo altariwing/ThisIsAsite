@@ -39,9 +39,9 @@ public class EmployeeServlet extends HttpServlet {
 				String emp_id = req.getParameter("emp_id").trim();
 				String emp_id_Reg = "^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$";
 				if (emp_id == null || emp_id.trim().length() == 0) {
-					errorMsgs.put("emp_id", "職位請勿空白");
+					errorMsgs.put("emp_id", "員工帳號請勿空白");
 				} else if (!emp_id.trim().matches(emp_id_Reg)) { // 以下練習正則(規)表示式(regular-expression)
-					errorMsgs.put("emp_id", "員工信箱: 必須為電子郵件");
+					errorMsgs.put("emp_id", "員工帳號: 必須為電子郵件");
 				}
 
 				/*************************** 2.開始新增資料 ***************************************/
@@ -72,5 +72,98 @@ public class EmployeeServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
+		
+		if ("getOne_For_Update".equals(action)){ // 來自update_emp_input.jsp的請求
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				/***********************
+				 * 1.接收請求參數 - 輸入格式的錯誤處理
+				 *************************/
+				
+				String emp_no = req.getParameter("emp_no");
+				
+				String emp_name = req.getParameter("emp_name");
+				String emp_name_Reg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+				if (emp_name == null || emp_name.trim().length() == 0) {
+					errorMsgs.add("員工姓名: 請勿空白");
+				} else if (!emp_name.trim().matches(emp_name_Reg)) { // 以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("員工姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
+				}
+
+				String emp_id = req.getParameter("emp_id").trim();
+				String emp_id_Reg = "^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$";
+				if (emp_id == null || emp_id.trim().length() == 0) {
+					errorMsgs.add("員工帳號請勿空白");
+				} else if (!emp_id.trim().matches(emp_id_Reg)) { // 以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("員工帳號: 必須為電子郵件");
+				}
+
+				String emp_psw = req.getParameter("emp_id").trim();
+				String emp_psw_Reg = "^([a-zA-Z0-9@*#]{6,15})$";
+				if (emp_id == null || emp_id.trim().length() == 0) {
+					errorMsgs.add("員工密碼請勿空白");
+				} else if (!emp_id.trim().matches(emp_psw_Reg)) { // 以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("員工密碼: 只能是英文字母、數字和*#@ 且長度必需在6到15之間");
+				}
+				
+				String emp_state = req.getParameter("emp_state").trim();
+				
+				/*************************** 2.開始修改資料 ***************************************/
+
+				byte[] emp_photo= "abc".getBytes();
+				EmployeeService empSvc = new EmployeeService();
+				empSvc.updateEmp(emp_id, emp_psw, emp_name, emp_photo, emp_state, emp_no);
+
+				/***************************
+				 * 3.修改完成,準備轉交(Send the Success view)
+				 ***********/
+				String url = "/employee/listAllEmp.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 **********************************/
+			} catch (Exception e) {
+				errorMsgs.add(e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/employee/addEmp.jsp");
+				failureView.forward(req, res);
+			}
+			
+		}
+		if ("delete".equals(action)) { // 來自listAllEmp.jsp的請求
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/***********************
+				 * 1.接收請求參數 - 輸入格式的錯誤處理
+				 *************************/
+				String emp_no = req.getParameter("emp_no");
+
+				/***************************2.開始刪除資料***************************************/
+				EmployeeService empSvc = new EmployeeService();
+				empSvc.deleteEmp(emp_no);
+
+				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
+				String url = "/employee/listAllEmp.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 **********************************/
+			} catch (Exception e) {
+				errorMsgs.add("刪除資料失敗:"+e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/employee/listAllEmp.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
 	}
 }

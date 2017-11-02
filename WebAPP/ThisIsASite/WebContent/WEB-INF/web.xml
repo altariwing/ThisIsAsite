@@ -17,7 +17,18 @@
     <servlet-name>HelloWorld</servlet-name>
     <url-pattern>/HelloWorld</url-pattern>
   </servlet-mapping>
-  
+ 
+ <servlet>
+    <servlet-name>DBGifReader4</servlet-name>
+    <servlet-class>com.employee.controller.DBGifReader4</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DBGifReader4</servlet-name>
+    <url-pattern>/DBGifReader4</url-pattern>
+  </servlet-mapping>
+ 
+ 
+ 
   <servlet>
 		<servlet-name>EmployeeServlet</servlet-name>
 		<servlet-class>com.employee.controller.EmployeeServlet</servlet-class>

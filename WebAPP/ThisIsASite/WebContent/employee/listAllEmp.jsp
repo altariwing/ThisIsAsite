@@ -91,6 +91,8 @@
 		
 		<th>帳號狀態</th>
 		<th>新增日期</th>
+		<th>修改</th>
+		<th>刪除</th>
 	</tr>
 	<%@ include file="page1.file" %> 
 	
@@ -106,6 +108,19 @@
 			<td><img id="ItemPreview" src="data:image/png;base64,${empVO.emp_photo}" /></td>
 			<td>${empVO.emp_state}</td>
 			<td>${empVO.emp_newdate}</td>
+			<td>
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/update_emp_input.jsp" style="margin-bottom: 0px;">
+			     <input type="submit" value="修改">
+			     <input type="hidden" name="emp_no"  value="${empVO.emp_no}">
+			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
+			</td>
+			
+			<td>
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/employee/emp.do" style="margin-bottom: 0px;">
+			     <input type="submit" value="刪除">
+			     <input type="hidden" name="emp_no"  value="${empVO.emp_no}">
+			     <input type="hidden" name="action" value="delete"></FORM>
+			</td>
 		</tr>
 	</c:forEach>
 </table>
@@ -113,7 +128,8 @@
 
 
 
-</div>
+
 <%@ include file="page2.file" %>
+</div>
 </body>
 </html>

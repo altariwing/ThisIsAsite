@@ -80,9 +80,11 @@ INSERT INTO EMPLOYEE_AUTH(EMP_NO, BKF_NO,EMAU_EDITOR)
 VALUES('EM00000003', 101, 'EM00000001');
 INSERT INTO EMPLOYEE_AUTH(EMP_NO, BKF_NO,EMAU_EDITOR) 
 VALUES('EM00000003', 102, 'EM00000001');
------員工的世界-複製到這邊--------
------員工的世界-複製到這邊--------
------員工的世界-複製到這邊--------
+
+-----員工的世界-複製到這邊-請按下commit-------
+commit;
+-----員工的世界-複製到這邊-請按下commit-------
+-----員工的世界-複製到這邊-請按下commit-------
 
 -----商品的世界-要先拿大哥的表格--
 DROP TABLE ORDER_DETAIL;

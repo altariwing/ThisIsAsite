@@ -20,31 +20,31 @@ public class TEST_EmployeeJDBCDAO {
     	java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
     	//"byte[]" test inputs
     	byte[] testByteArray = "abc".getBytes();
-    	File f=new File("D:/BA104_WebAPP/eclipse_WTP_workSpace1/ThisIsASite/src/com/employee/model/img/poke4.JPG");   	    	
-    	byte[] fileContent = Files.readAllBytes(f.toPath());
+    	//File f=new File("D:/BA104_WebAPP/eclipse_WTP_workSpace1/ThisIsASite/src/com/employee/model/img/poke4.JPG");   	    	
+    	//byte[] fileContent = Files.readAllBytes(f.toPath());
     	
-//    	//✈Test insert(EmployeeVO EmployeeVO);
-//		EmployeeVO empVO1 = new EmployeeVO();
-//    	empVO1.setEmp_id("imageup@forhouse.com");
-//    	empVO1.setEmp_psw("###");
-//    	empVO1.setEmp_name("CCC");
-//    	empVO1.setEmp_photo(fileContent);
-//    	empVO1.setEmp_state("Active");    	
-//    	dao.insert(empVO1);
+    	//✈Test insert(EmployeeVO EmployeeVO);
+		EmployeeVO empVO1 = new EmployeeVO();
+    	empVO1.setEmp_id("imageup@forhouse.com");
+    	empVO1.setEmp_psw("###");
+    	empVO1.setEmp_name("CCC");
+    	//empVO1.setEmp_photo(fileContent);
+    	empVO1.setEmp_state("Active");    	
+    	dao.insert(empVO1);
 
   	
-    	System.out.println("======✈Test update(EmployeeVO EmployeeVO)======");
-   	
-    	//✈Test update(EmployeeVO EmployeeVO)
-    	EmployeeVO empVO2 = new EmployeeVO();
-    	empVO2.setEmp_no("EM00000028");
-    	empVO2.setEmp_id("byRose@forhouse.com");
-    	empVO2.setEmp_psw("rrrrrrr");
-    	empVO2.setEmp_name("RubyRose");
-    	empVO2.setEmp_photo(fileContent);
-    	empVO2.setEmp_state("Active");
-    	
-    	dao.update(empVO2);
+//    	System.out.println("======✈Test update(EmployeeVO EmployeeVO)======");
+//   	
+//    	//✈Test update(EmployeeVO EmployeeVO)
+//    	EmployeeVO empVO2 = new EmployeeVO();
+//    	empVO2.setEmp_no("EM00000028");
+//    	empVO2.setEmp_id("byRose@forhouse.com");
+//    	empVO2.setEmp_psw("rrrrrrr");
+//    	empVO2.setEmp_name("RubyRose");
+//    	empVO2.setEmp_photo(fileContent);
+//    	empVO2.setEmp_state("Active");
+//    	
+//    	dao.update(empVO2);
 
     	
 //    	System.out.println("======✈Test delete(String emp_no)======");
@@ -54,25 +54,25 @@ public class TEST_EmployeeJDBCDAO {
 
 //
 //    	
-//		System.out.println("======✈Test findByPK(String emp_no)======");
-//    	
-//   	
-//    	//✈Test findByPK(String emp_no)
-//    	EmployeeVO empVO3 = dao.findByPK("EM00000021");
-//    	System.out.print(empVO3.getEmp_no()+", "); 
-//		System.out.print(empVO3.getEmp_id()+", ");
-//		System.out.print(empVO3.getEmp_psw()+", ");
-//		System.out.print(empVO3.getEmp_name()+", ");
-//		System.out.print(empVO3.getEmp_lstlog()+", ");
-//		System.out.print(empVO3.getEmp_badlog()+", ");
-//		System.out.print(empVO3.getEmp_badlogtry()+", ");
-//		System.out.print(empVO3.getEmp_photo()+", ");
-//		System.out.print(empVO3.getEmp_state()+", ");
-//		System.out.println(empVO3.getEmp_newdate()+", ");
-//    	
-//		
+		System.out.println("======✈Test findByPK(String emp_no)======");
+    	
+   	
+    	//✈Test findByPK(String emp_no)
+    	EmployeeVO empVO3 = dao.findByPK("EM00000001");
+    	System.out.print(empVO3.getEmp_no()+", "); 
+		System.out.print(empVO3.getEmp_id()+", ");
+		System.out.print(empVO3.getEmp_psw()+", ");
+		System.out.print(empVO3.getEmp_name()+", ");
+		System.out.print(empVO3.getEmp_lstlog()+", ");
+		System.out.print(empVO3.getEmp_badlog()+", ");
+		System.out.print(empVO3.getEmp_badlogtry()+", ");
+		System.out.print(empVO3.getEmp_photo()+", ");
+		System.out.print(empVO3.getEmp_state()+", ");
+		System.out.println(empVO3.getEmp_newdate()+", ");
+    	
+		
 //		System.out.println("======✈Test getAll() ======");
-//    	
+    	
 //    	
 //		//✈Test getAll()  	
 //		List<EmployeeVO> list = dao.getAll();
