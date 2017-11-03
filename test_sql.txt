@@ -17,3 +17,17 @@ SELECT * FROM EMPLOYEE;
 
 
 http://localhost:8081/ThisIsASite/EmployeeServlet?action=getAll
+
+//新增
+INSERT INTO BK_FUNCTION(BKF_NO, BKF_NAME, BKF_DSB, BKF_STATE) 
+VALUES(BKF_NO_SEQ.NEXTVAL, '管理員工', '管理後台帳號、管理後台帳號權限' ,'On');
+"INSERT INTO BK_FUNCTION(BKF_NO, BKF_NAME, BKF_DSB, BKF_STATE) VALUES(BKF_NO_SEQ.NEXTVAL, ?, ? ,?)"	
+修改
+UPDATE BK_FUNCTION set BKF_NAME='管理員工', BKF_DSB='管理後台帳號、管理後台帳號權限', BKF_STATE='Off' where BKF_NO = '100';
+UPDATE BK_FUNCTION set BKF_NAME='管理員工', BKF_DSB='管理後台帳號、管理後台帳號權限', BKF_STATE='Off' where BKF_NO = '100';
+
+
+
+
+
+
