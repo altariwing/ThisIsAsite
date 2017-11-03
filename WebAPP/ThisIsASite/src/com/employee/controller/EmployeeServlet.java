@@ -6,6 +6,7 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+
 import com.employee.model.*;
 
 public class EmployeeServlet extends HttpServlet {
@@ -73,7 +74,36 @@ public class EmployeeServlet extends HttpServlet {
 			}
 		}
 		
-		if ("getOne_For_Update".equals(action)){ // 來自update_emp_input.jsp的請求
+		if ("getOne_For_Update".equals(action)){ // 來自listAllEmp.jsp 或  /dept/listEmps_ByDeptno.jsp 的請求
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				/***************************1.接收請求參數****************************************/
+				String emp_no = new String(req.getParameter("emp_no"));
+				
+				/***************************2.開始查詢資料****************************************/
+				EmployeeService empSvc = new EmployeeService();
+				EmployeeVO empVO = empSvc.getOneEmp(emp_no);
+								
+				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+				req.setAttribute("empVO", empVO); // 資料庫取出的empVO物件,存入req
+				String url = "/employee/update_emp_input.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交update_emp_input.jsp
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理************************************/
+			} catch (Exception e) {
+				throw new ServletException(e);
+				}
+			
+		}
+		
+		if("update".equals(action)){ // 來自update_emp_input.jsp的請求
+			
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -103,15 +133,32 @@ public class EmployeeServlet extends HttpServlet {
 					errorMsgs.add("員工帳號: 必須為電子郵件");
 				}
 
-				String emp_psw = req.getParameter("emp_id").trim();
+				String emp_psw = req.getParameter("emp_psw").trim();
 				String emp_psw_Reg = "^([a-zA-Z0-9@*#]{6,15})$";
-				if (emp_id == null || emp_id.trim().length() == 0) {
+				if (emp_psw == null || emp_psw.trim().length() == 0) {
 					errorMsgs.add("員工密碼請勿空白");
-				} else if (!emp_id.trim().matches(emp_psw_Reg)) { // 以下練習正則(規)表示式(regular-expression)
+				} else if (!emp_psw.trim().matches(emp_psw_Reg)) { // 以下練習正則(規)表示式(regular-expression)
 					errorMsgs.add("員工密碼: 只能是英文字母、數字和*#@ 且長度必需在6到15之間");
 				}
 				
 				String emp_state = req.getParameter("emp_state").trim();
+				
+				
+				EmployeeVO empVO = new EmployeeVO();
+				empVO.setEmp_id(emp_id);
+				empVO.setEmp_psw(emp_psw);
+				empVO.setEmp_name(emp_name);				
+				empVO.setEmp_state(emp_state);
+				empVO.setEmp_no(emp_no);
+
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					req.setAttribute("empVO", empVO); // 含有輸入格式錯誤的empVO物件,也存入req
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/employee/update_emp_input.jsp");
+					failureView.forward(req, res);
+					return; //程式中斷
+				}
 				
 				/*************************** 2.開始修改資料 ***************************************/
 
@@ -133,7 +180,10 @@ public class EmployeeServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 			
+		
 		}
+		
+		
 		if ("delete".equals(action)) { // 來自listAllEmp.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();

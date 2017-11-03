@@ -3,7 +3,7 @@
 <%@ page import="com.employee.model.*"%>
 
 <%
-  EmployeeVO empVO = (EmployeeVO) request.getAttribute("employeeVO"); //EmpServlet.java (Concroller), 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
+  EmployeeVO empVO = (EmployeeVO) request.getAttribute("empVO"); //EmpServlet.java (Concroller), 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
 %>
 
 
@@ -69,25 +69,31 @@
 <FORM METHOD="post" ACTION="emp.do" name="form1">
 <table>
 	<tr>
-		<td>員工編號:<font color=red><b>*</b></font></td>
+		<td>員工編號:</td>
 		<td><%=empVO.getEmp_no()%></td>
+		<input type="hidden" name="emp_no" value="<%=empVO.getEmp_no()%>">
 	</tr>
 	<tr>
-		<td>員工帳號:</td>
+		<td>員工帳號:<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="emp_id" size="45" value="<%=empVO.getEmp_id()%>" /></td>
 	</tr>
 	<tr>
-		<td>員工姓名:</td>
+		<td>員工密碼:<font color=red><b>*</b></font></td>
+		
+		<td><input type="TEXT" name="emp_psw" size="45" value="<%=empVO.getEmp_psw().replaceAll(".", "*")%>" /></td>
+	</tr>
+	<tr>
+		<td>員工姓名:<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="emp_name" size="45"	value="<%=empVO.getEmp_name()%>" /></td>
 	</tr>
 	
 	
 	<tr>
 		<td>帳號狀態:<font color=red><b>*</b></font></td>
-		<td><select size="1" name="emp_state">
+		<td><select  name="emp_state">
 			
-				<option value="Active" >
-				<option value="inActive" >
+				<option value="Active">Active</option>
+				<option value="inActive">inActive</option>
 			
 		</select></td>
 	</tr>

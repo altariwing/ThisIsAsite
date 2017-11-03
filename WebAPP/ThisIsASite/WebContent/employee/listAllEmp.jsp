@@ -109,7 +109,7 @@
 			<td>${empVO.emp_state}</td>
 			<td>${empVO.emp_newdate}</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/update_emp_input.jsp" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/employee/emp.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="н╫зя">
 			     <input type="hidden" name="emp_no"  value="${empVO.emp_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
