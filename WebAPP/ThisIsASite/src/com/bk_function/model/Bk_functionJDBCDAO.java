@@ -14,6 +14,9 @@ public class Bk_functionJDBCDAO implements Bk_functionDAO_interface{
 	private static final String INSERT = "INSERT INTO BK_FUNCTION(BKF_NO, BKF_NAME, BKF_DSB, BKF_STATE)" 
 			+"VALUES(BKF_NO_SEQ.NEXTVAL, ?, ? ,?)";	
 	private static final String UPDATE = "UPDATE BK_FUNCTION set BKF_NAME=?, BKF_DSB=?, BKF_STATE=? where BKF_NO = ?";
+	
+	
+	
 	@Override
 	public void insert(Bk_functionVO Bk_functionVO) {
 		int updateCount = 0;
@@ -46,7 +49,6 @@ public class Bk_functionJDBCDAO implements Bk_functionDAO_interface{
 				try {
 					pstmt.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -54,15 +56,10 @@ public class Bk_functionJDBCDAO implements Bk_functionDAO_interface{
 				try {
 					con.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-			
-			
-			
-		} // end finally		
-		
+		} // end finally				
 	}
 
 	@Override
