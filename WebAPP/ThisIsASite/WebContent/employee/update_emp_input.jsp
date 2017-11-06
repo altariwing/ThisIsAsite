@@ -92,8 +92,8 @@
 		<td>帳號狀態:<font color=red><b>*</b></font></td>
 		<td><select  name="emp_state">
 			
-				<option value="Active">Active</option>
-				<option value="inActive">inActive</option>
+				<option value="Active">啟用</option>
+				<option value="InActive">未啟用</option>
 			
 		</select></td>
 	</tr>
@@ -102,6 +102,8 @@
 <br>
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="empno" value="<%=empVO.getEmp_no()%>">
+<input type="hidden" name="requestURL" value="<%=request.getAttribute("requestURL")%>"> <!--原送出修改的來源網頁路徑,從request取出後,再送給Controller準備轉交之用-->
+<input type="hidden" name="whichPage"  value="<%=request.getAttribute("whichPage")%>">  <!--只用於:istAllEmp.jsp-->
 <input type="submit" value="送出修改"></FORM>
 </body>
 

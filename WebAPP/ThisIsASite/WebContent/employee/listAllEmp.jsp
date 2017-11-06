@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.employee.model.*"%>
-<%-- ¦¹­¶½m²ß±Ä¥Î EL ªº¼gªk¨ú­È --%>
+<%-- æ­¤é ç·´ç¿’æ¡ç”¨ EL çš„å¯«æ³•å–å€¼ --%>
 <%
  EmployeeService empService = new EmployeeService();
  List<EmployeeVO> list = empService.getAll();
@@ -12,7 +12,7 @@
 
 <!DOCTYPE html>
 <head>
-<title>©Ò¦³­û¤u¸ê®Æ - listAllEmp.jsp</title>
+<title>æ‰€æœ‰å“¡å·¥è³‡æ–™ - listAllEmp.jsp</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -59,17 +59,17 @@
 </head>
 <body bgcolor='white'>
 <div class="container pull-left " >
-<h4>¦¹­¶½m²ß±Ä¥Î EL ªº¼gªk¨ú­È:</h4>
+<h4>æ­¤é ç·´ç¿’æ¡ç”¨ EL çš„å¯«æ³•å–å€¼:</h4>
 <table id="table-1 " >
 	
-		 <h3>©Ò¦³­û¤u¸ê®Æ - listAllEmp.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a></h4>
+		 <h3>æ‰€æœ‰å“¡å·¥è³‡æ–™ - listAllEmp.jsp</h3>
+		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">å›é¦–é </a></h4>
 	
 </table>
 
-<%-- ¿ù»~ªí¦C --%>
+<%-- éŒ¯èª¤è¡¨åˆ— --%>
 <c:if test="${not empty errorMsgs}">
-	<font style="color:red">½Ğ­×¥¿¥H¤U¿ù»~:</font>
+	<font style="color:red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
 			<li style="color:red">${message}</li>
@@ -79,20 +79,20 @@
 
 <table class="table table-striped table-bordered">
 	<tr>
-		<th>­û¤u½s¸¹</th>
-		<th>­û¤u±b¸¹</th>
-		<th>­û¤u©m¦W</th>
+		<th>å“¡å·¥ç·¨è™Ÿ</th>
+		<th>å“¡å·¥å¸³è™Ÿ</th>
+		<th>å“¡å·¥å§“å</th>
 		
-		<th>¤W¦¸µn¤J¤é´Á</th>
-		<th>¤W¦¸¿ù»~µn¤J</th>
-		<th>¿ù»~¹Á¸Õ¦¸¼Æ</th>
+		<th>ä¸Šæ¬¡ç™»å…¥æ—¥æœŸ</th>
+		<th>ä¸Šæ¬¡éŒ¯èª¤ç™»å…¥</th>
+		<th>éŒ¯èª¤å˜—è©¦æ¬¡æ•¸</th>
 		
-		<th>·Ó¤ù</th>
+		<th>ç…§ç‰‡</th>
 		
-		<th>±b¸¹ª¬ºA</th>
-		<th>·s¼W¤é´Á</th>
-		<th>­×§ï</th>
-		<th>§R°£</th>
+		<th>å¸³è™Ÿç‹€æ…‹</th>
+		<th>æ–°å¢æ—¥æœŸ</th>
+		<th>ä¿®æ”¹</th>
+		<th>åˆªé™¤</th>
 	</tr>
 	<%@ include file="page1.file" %> 
 	
@@ -106,19 +106,23 @@
 			<td>${empVO.emp_badlog}</td>
 			<td>${empVO.emp_badlogtry}</td>
 			<td><img id="ItemPreview" src="data:image/png;base64,${empVO.emp_photo}" /></td>
-			<td>${empVO.emp_state}</td>
+			<td>${empVO.emp_state.equals('Active') ? 'å•Ÿç”¨':'æœªå•Ÿç”¨'}</td>
 			<td>${empVO.emp_newdate}</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/employee/emp.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="­×§ï">
+			     <input type="submit" value="ä¿®æ”¹">
 			     <input type="hidden" name="emp_no"  value="${empVO.emp_no}">
+			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--é€å‡ºæœ¬ç¶²é çš„è·¯å¾‘çµ¦Controller-->
+			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--é€å‡ºç•¶å‰æ˜¯ç¬¬å¹¾é çµ¦Controller-->
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/employee/emp.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="§R°£">
+			     <input type="submit" value="åˆªé™¤">
 			     <input type="hidden" name="emp_no"  value="${empVO.emp_no}">
+			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--é€å‡ºæœ¬ç¶²é çš„è·¯å¾‘çµ¦Controller-->
+			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--é€å‡ºç•¶å‰æ˜¯ç¬¬å¹¾é çµ¦Controller-->
 			     <input type="hidden" name="action" value="delete"></FORM>
 			</td>
 		</tr>

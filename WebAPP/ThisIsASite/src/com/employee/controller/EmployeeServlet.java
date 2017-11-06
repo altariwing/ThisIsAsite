@@ -81,6 +81,12 @@ public class EmployeeServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			
+			String requestURL = req.getParameter("requestURL"); // 送出修改的來源網頁路徑: 【/emp/listAllEmp.jsp】 
+			req.setAttribute("requestURL", requestURL); // 送出修改的來源網頁路徑, 存入req (是為了給update_emp_input.jsp)
+			
+			String whichPage = req.getParameter("whichPage");
+			req.setAttribute("whichPage", whichPage);   // 送出修改的來源網頁的第幾頁, 存入req(只用於:istAllEmp.jsp)
+			
 			try {
 				/***************************1.接收請求參數****************************************/
 				String emp_no = new String(req.getParameter("emp_no"));
@@ -97,7 +103,10 @@ public class EmployeeServlet extends HttpServlet {
 
 				/***************************其他可能的錯誤處理************************************/
 			} catch (Exception e) {
-				throw new ServletException(e);
+				errorMsgs.add("修改資料取出時失敗:"+e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher(requestURL);
+				failureView.forward(req, res);
 				}
 			
 		}
@@ -110,13 +119,18 @@ public class EmployeeServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			
+			String requestURL = req.getParameter("requestURL"); // 送出修改的來源網頁路徑: 【/emp/listAllEmp.jsp】
+			req.setAttribute("requestURL", requestURL); // 送出修改的來源網頁路徑, 存入req
+			
+			String whichPage = req.getParameter("whichPage"); // 送出修改的來源網頁的第幾頁(只用於:istAllEmp.jsp)
+			req.setAttribute("whichPage", whichPage); // 送出修改的來源網頁的第幾頁, 存入req(只用於:istAllEmp.jsp)
+			
 			try {
 				/***********************
 				 * 1.接收請求參數 - 輸入格式的錯誤處理
 				 *************************/
 				
 				String emp_no = req.getParameter("emp_no");
-				
 				String emp_name = req.getParameter("emp_name");
 				String emp_name_Reg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (emp_name == null || emp_name.trim().length() == 0) {
@@ -169,14 +183,18 @@ public class EmployeeServlet extends HttpServlet {
 				/***************************
 				 * 3.修改完成,準備轉交(Send the Success view)
 				 ***********/
-				String url = "/employee/listAllEmp.jsp";
+				
+
+				req.setAttribute("empVO", empVO);
+				
+				String url = requestURL+"?whichPage="+whichPage+"&empno="+emp_no; // 送出修改的來源網頁的第幾頁(只用於:istAllEmp.jsp)和修改的是哪一筆
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
-
+				
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
-				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/employee/addEmp.jsp");
+				errorMsgs.add("修改資料失敗:"+e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/employee/update_emp_input.jsp");
 				failureView.forward(req, res);
 			}
 			
@@ -191,6 +209,9 @@ public class EmployeeServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 
+			String requestURL = req.getParameter("requestURL"); // 送出刪除的來源網頁路徑: 可能為【/emp/listAllEmp.jsp】 或  【/dept/listEmps_ByDeptno.jsp】 或 【 /dept/listAllDept.jsp】
+			String whichPage = req.getParameter("whichPage");   // 送出刪除的來源網頁的第幾頁(只用於:istAllEmp.jsp)
+			
 			try {
 				/***********************
 				 * 1.接收請求參數 - 輸入格式的錯誤處理
@@ -199,10 +220,11 @@ public class EmployeeServlet extends HttpServlet {
 
 				/***************************2.開始刪除資料***************************************/
 				EmployeeService empSvc = new EmployeeService();
+				EmployeeVO empVO = empSvc.getOneEmp(emp_no);
 				empSvc.deleteEmp(emp_no);
 
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-				String url = "/employee/listAllEmp.jsp";
+				String url = requestURL+"?whichPage="+whichPage; 
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 
@@ -210,7 +232,7 @@ public class EmployeeServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/employee/listAllEmp.jsp");
+						.getRequestDispatcher(requestURL);
 				failureView.forward(req, res);
 			}
 		}
