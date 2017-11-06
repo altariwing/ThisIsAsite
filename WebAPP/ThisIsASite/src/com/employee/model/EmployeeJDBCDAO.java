@@ -236,7 +236,7 @@ public class EmployeeJDBCDAO implements EmployeeDAO_interface {
 
 	@Override
 	public List<EmployeeVO> getAll() {
-		// TODO Auto-generated method stub
+		
 
 		List<EmployeeVO> list = new ArrayList<EmployeeVO>();
 		EmployeeVO employeeVO = null;

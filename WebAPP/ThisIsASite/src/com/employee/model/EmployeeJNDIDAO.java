@@ -54,7 +54,6 @@ public class EmployeeJNDIDAO implements EmployeeDAO_interface{
 
 					pstmt.executeUpdate();
 					
-					
 					// Handle any SQL errors
 				}catch (SQLException se){
 					throw new RuntimeException("A database error occured. "
@@ -134,7 +133,7 @@ public class EmployeeJNDIDAO implements EmployeeDAO_interface{
 			}
 			@Override
 			public void delete(String emp_no) {
-				int updateCount = 0;
+				
 				Connection con = null;
 				PreparedStatement pstmt = null;
 
@@ -145,7 +144,7 @@ public class EmployeeJNDIDAO implements EmployeeDAO_interface{
 
 					pstmt.setString(1, emp_no);
 
-					updateCount = pstmt.executeUpdate();
+					pstmt.executeUpdate();
 
 					// Handle any SQL errors
 				} catch (SQLException se) {
@@ -233,7 +232,6 @@ public class EmployeeJNDIDAO implements EmployeeDAO_interface{
 			}
 			@Override
 			public List<EmployeeVO> getAll() {
-				// TODO Auto-generated method stub
 
 				List<EmployeeVO> list = new ArrayList<EmployeeVO>();
 				EmployeeVO employeeVO = null;

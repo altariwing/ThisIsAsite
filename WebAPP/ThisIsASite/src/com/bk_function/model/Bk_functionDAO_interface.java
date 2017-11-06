@@ -25,12 +25,12 @@ public interface Bk_functionDAO_interface {
 	/**
 	 * delete that BKF_NO's row 
 	 * */
-	public void delete(String bkf_no);
+	public void delete(Integer bkf_no);
 	
 	/**
 	 * select PK from table
 	 * */
-	Bk_functionVO findByPK(String bkf_no);
+	Bk_functionVO findByPK(Integer bkf_no);
 	
 	/**
 	 * select all from table
