@@ -23,14 +23,14 @@ public class TEST_EmployeeJDBCDAO {
     	//File f=new File("D:/BA104_WebAPP/eclipse_WTP_workSpace1/ThisIsASite/src/com/employee/model/img/poke4.JPG");   	    	
     	//byte[] fileContent = Files.readAllBytes(f.toPath());
     	
-    	//✈Test insert(EmployeeVO EmployeeVO);
-		EmployeeVO empVO1 = new EmployeeVO();
-    	empVO1.setEmp_id("imageup@forhouse.com");
-    	empVO1.setEmp_psw("###");
-    	empVO1.setEmp_name("CCC");
-    	//empVO1.setEmp_photo(fileContent);
-    	empVO1.setEmp_state("Active");    	
-    	dao.insert(empVO1);
+//    	//✈Test insert(EmployeeVO EmployeeVO);
+//		EmployeeVO empVO1 = new EmployeeVO();
+//    	empVO1.setEmp_id("imageup@forhouse.com");
+//    	empVO1.setEmp_psw("###");
+//    	empVO1.setEmp_name("CCC");
+//    	//empVO1.setEmp_photo(fileContent);
+//    	empVO1.setEmp_state("Active");    	
+//    	dao.insert(empVO1);
 
   	
 //    	System.out.println("======✈Test update(EmployeeVO EmployeeVO)======");
@@ -54,11 +54,27 @@ public class TEST_EmployeeJDBCDAO {
 
 //
 //    	
-		System.out.println("======✈Test findByPK(String emp_no)======");
+//		System.out.println("======✈Test findByPK(String emp_no)======");
+//    	
+//   	
+//    	//✈Test findByPK(String emp_no)
+//    	EmployeeVO empVO3 = dao.findByPK("EM00000001");
+//    	System.out.print(empVO3.getEmp_no()+", "); 
+//		System.out.print(empVO3.getEmp_id()+", ");
+//		System.out.print(empVO3.getEmp_psw()+", ");
+//		System.out.print(empVO3.getEmp_name()+", ");
+//		System.out.print(empVO3.getEmp_lstlog()+", ");
+//		System.out.print(empVO3.getEmp_badlog()+", ");
+//		System.out.print(empVO3.getEmp_badlogtry()+", ");
+//		System.out.print(empVO3.getEmp_photo()+", ");
+//		System.out.print(empVO3.getEmp_state()+", ");
+//		System.out.println(empVO3.getEmp_newdate()+", ");
     	
-   	
-    	//✈Test findByPK(String emp_no)
-    	EmployeeVO empVO3 = dao.findByPK("EM00000001");
+		System.out.println("======✈Test findByID(String emp_id)======");
+    	
+	   	
+    	//✈Test findByID(String emp_id)
+    	EmployeeVO empVO3 = dao.findByID("uccu@uccu.com");
     	System.out.print(empVO3.getEmp_no()+", "); 
 		System.out.print(empVO3.getEmp_id()+", ");
 		System.out.print(empVO3.getEmp_psw()+", ");
@@ -69,7 +85,6 @@ public class TEST_EmployeeJDBCDAO {
 		System.out.print(empVO3.getEmp_photo()+", ");
 		System.out.print(empVO3.getEmp_state()+", ");
 		System.out.println(empVO3.getEmp_newdate()+", ");
-    	
 		
 //		System.out.println("======✈Test getAll() ======");
     	

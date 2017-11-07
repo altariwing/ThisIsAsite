@@ -60,6 +60,10 @@ public class EmployeeService {
 	public EmployeeVO getOneEmp(String empno) {
 		return dao.findByPK(empno);
 	}
+	
+	public EmployeeVO getOneEmpbyID(String empid) {
+		return dao.findByID(empid);
+	}
 
 	public List<EmployeeVO> getAll() {
 		return dao.getAll();

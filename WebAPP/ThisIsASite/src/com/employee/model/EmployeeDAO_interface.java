@@ -15,20 +15,29 @@ public interface EmployeeDAO_interface {
 	 * insert a row 
 	 * */
 	public void insert(EmployeeVO EmployeeVO);
+	
 	/**
 	 * update that emp_no's row 
 	 * */
 	public void update(EmployeeVO EmployeeVO);
+	
 	/**
 	 * delete that emp_no's row 
 	 * */
 	public void delete(String emp_no);
+	
 	/**
-	 * select PK from table
+	 * select a row from table by PK
 	 * */
-	EmployeeVO findByPK(String emp_no);
+	public EmployeeVO findByPK(String emp_no);
+	
+	/**
+	 * select a row from table by ID
+	 * */
+	public EmployeeVO findByID(String emp_id);
+	
 	/**
 	 * select all from table
 	 * */
-	List<EmployeeVO> getAll();
+	public List<EmployeeVO> getAll();
 }
