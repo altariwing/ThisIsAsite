@@ -18,6 +18,9 @@ SELECT * FROM EMPLOYEE;
 
 http://localhost:8081/ThisIsASite/EmployeeServlet?action=getAll
 
+---------------
+--BK_FUNCTION--
+---------------
 ----新增----
 INSERT INTO BK_FUNCTION(BKF_NO, BKF_NAME, BKF_DSB, BKF_STATE) 
 VALUES(BKF_NO_SEQ.NEXTVAL, '管理員工', '管理後台帳號、管理後台帳號權限' ,'On');
@@ -36,7 +39,19 @@ SELECT * FROM BK_FUNCTION WHERE BKF_NO = 100;
 SELECT * FROM BK_FUNCTION;
 "SELECT * FROM BK_FUNCTION"
 
+---------------
+--BK_FUNCTION--
+---------------
+----新增----
+INSERT INTO PRODUCT_ORDER(PDO_NO, MEM_NO, SLR_NO)
+VALUES('OD'||TO_CHAR(SYSDATE,'RRMMDD')||'-'||(LPAD(TO_CHAR(PDO_NO_SEQ.NEXTVAL),6,'0')), 'MB00000001', 'SL00000001');
+"INSERT INTO PRODUCT_ORDER(PDO_NO, MEM_NO, SLR_NO)
+VALUES('OD'||TO_CHAR(SYSDATE,'RRMMDD')||'-'||(LPAD(TO_CHAR(PDO_NO_SEQ.NEXTVAL),6,'0')), ?, ?)"
+----修改----
+UPDATE PRODUCT_ORDER set PDO_STAT 'cancel where PDO_NO = 'OD171108-000001';
+'
 
 
+PDO_STAT
 
 
