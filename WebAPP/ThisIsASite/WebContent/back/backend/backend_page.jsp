@@ -35,7 +35,7 @@ EmployeeVO empVO = (EmployeeVO) session.getAttribute("empVO");
 <!-- for jquery datepicker -->
 
 
-<title>系統公告所有資料</title>
+<title>你好我是後台</title>
 </head>
 <body>
 	<!-- <div class=""> -->
