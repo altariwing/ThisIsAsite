@@ -169,8 +169,8 @@ public class Order_detailJDBCDAO implements Order_detailDAO_interface {
 
 			while (rs.next()) {
 				order_detailVO = new Order_detailVO();
-				order_detailVO.setPdo_no(pdo_no);
-				order_detailVO.setPrd_no(prd_no);
+				order_detailVO.setPdo_no(rs.getString("pdo_no"));
+				order_detailVO.setPrd_no(rs.getString("prd_no"));
 				order_detailVO.setOder_uni_price(rs.getInt("oder_uni_price"));
 				order_detailVO.setOder_quantity(rs.getInt("oder_quantity"));
 			}
