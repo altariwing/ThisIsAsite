@@ -17,19 +17,20 @@ public class TEST_Product_orderJDBCDAO {
     	java.util.Date now = calendar.getTime();
     	java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
     	
-//    	//♥Test insert(Product_orderVO Product_orderVO)
-//    	System.out.println("======♥Test insert(Product_orderVO Product_orderVO)======");  	
-//    	Product_orderVO pdoVO1 = new Product_orderVO();
-//    	pdoVO1.setMem_no("MB00000001");
-//    	pdoVO1.setSlr_no("SL00000001");
-//    	dao.insert(pdoVO1);
+    	//♥Test insert(Product_orderVO Product_orderVO)
+    	System.out.println("======♥Test insert(Product_orderVO Product_orderVO)======");  	
+    	Product_orderVO pdoVO1 = new Product_orderVO();
+    	pdoVO1.setMem_no("MB00000001");
+    	pdoVO1.setSlr_no("SL00000001");
+    	pdoVO1.setCp_no("YYYYYY");
+    	dao.insert(pdoVO1);
     	
-    	//♥Test update(Product_orderVO Product_orderVO)
-    	System.out.println("======♥Test update(Product_orderVO Product_orderVO)======");
-    	Product_orderVO pdoVO2 = new Product_orderVO();
-    	pdoVO2.setPdo_stat("cancel");
-    	pdoVO2.setPdo_no("OD171108-000002");
-    	dao.update(pdoVO2);
+//    	//♥Test update(Product_orderVO Product_orderVO)
+//    	System.out.println("======♥Test update(Product_orderVO Product_orderVO)======");
+//    	Product_orderVO pdoVO2 = new Product_orderVO();
+//    	pdoVO2.setPdo_stat("cancel");
+//    	pdoVO2.setPdo_no("OD171108-000002");
+//    	dao.update(pdoVO2);
         
 //    	//♥Test delete(String pdo_no) 
 //    	System.out.println("======♥Test delete(String pdo_no) ======");

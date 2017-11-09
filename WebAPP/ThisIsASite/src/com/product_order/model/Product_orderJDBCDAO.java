@@ -11,8 +11,8 @@ public class Product_orderJDBCDAO implements Product_orderDAO_interface {
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
 	String userid = "BA104";
 	String passwd = "123456";
-	private static final String INSERT = "INSERT INTO PRODUCT_ORDER(PDO_NO, MEM_NO, SLR_NO)"
-			+ "VALUES('OD'||TO_CHAR(SYSDATE,'RRMMDD')||'-'||(LPAD(TO_CHAR(PDO_NO_SEQ.NEXTVAL),6,'0')), ?, ?)";
+	private static final String INSERT = "INSERT INTO PRODUCT_ORDER(PDO_NO, MEM_NO, SLR_NO,CP_NO)"
+			+ "VALUES('OD'||TO_CHAR(SYSDATE,'RRMMDD')||'-'||(LPAD(TO_CHAR(PDO_NO_SEQ.NEXTVAL),6,'0')), ?, ?, ?)";
 
 	private static final String UPDATE = "UPDATE PRODUCT_ORDER set PDO_STAT=? where PDO_NO =?";
 	private static final String DELETE = "DELETE FROM PRODUCT_ORDER WHERE PDO_NO = ?";
@@ -32,7 +32,8 @@ public class Product_orderJDBCDAO implements Product_orderDAO_interface {
 
 			pstmt.setString(1, Product_orderVO.getMem_no());
 			pstmt.setString(2, Product_orderVO.getSlr_no());
-
+			pstmt.setString(3, Product_orderVO.getCp_no());
+			
 			updateCount = pstmt.executeUpdate();
 			System.out.println("成功新增" + updateCount + "筆資料");
 

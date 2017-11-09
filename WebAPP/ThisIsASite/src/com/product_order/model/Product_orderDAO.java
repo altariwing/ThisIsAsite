@@ -46,6 +46,7 @@ public class Product_orderDAO implements Product_orderDAO_interface {
 
 			pstmt.setString(1, Product_orderVO.getMem_no());
 			pstmt.setString(2, Product_orderVO.getSlr_no());
+			pstmt.setString(3, Product_orderVO.getCp_no());
 
 			pstmt.executeUpdate();
 
