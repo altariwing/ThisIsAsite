@@ -11,6 +11,7 @@ import com.product_order.model.Product_orderVO;
  * delete
  * findByPK
  * getAll
+ * getAllByPDO_NO
  */
 public interface Order_detailDAO_interface {
 	
@@ -37,7 +38,15 @@ public interface Order_detailDAO_interface {
     
     /**
      * select all from table
-     * @return Order_detailVO object
+     * @return List<Order_detailVO>
      */
     public List<Order_detailVO> getAll();
+    
+    /**
+     * select by product_order
+     * @return List<Order_detailVO>
+     */
+    public List<Order_detailVO> getAllByPDO_NO(String pdo_no);
+    
+   
 }

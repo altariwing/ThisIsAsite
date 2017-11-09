@@ -34,4 +34,10 @@ public class Order_detailDAO implements Order_detailDAO_interface{
 		return null;
 	}
 
+	@Override
+	public List<Order_detailVO> getAllByPDO_NO(String pdo_no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
