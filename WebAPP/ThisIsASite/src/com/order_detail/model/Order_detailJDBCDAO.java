@@ -11,6 +11,12 @@ public class Order_detailJDBCDAO implements Order_detailDAO_interface{
 	private static final String INSERT = "INSERT INTO ORDER_DETAIL(PDO_NO, PRD_NO, ODER_UNI_PRICE, ODER_QUANTITY)" 
 	+"VALUES(?, ?, ? ,?)";
 	private static final String UPDATE = "UPDATE ORDER_DETAIL set ODER_QUANTITY=? where PDO_NO = ? and PRD_NO = ?";
+	private static final String DELETE = 
+			"DELETE FROM ORDER_DETAIL where PDO_NO = ? and PRD_NO = ?";
+	private static final String FIND_BY_PK = 
+	"SELECT PDO_NO, PRD_NO, ODER_UNI_PRICE, ODER_QUANTITY FROM ORDER_DETAIL where PDO_NO = ? and PRD_NO = ?";
+	private static final String GET_ALL = "SELECT * FROM ORDER_DETAIL";
+	
 	@Override
 	public void insert(Order_detailVO Order_detailVO) {
 		// TODO Auto-generated method stub

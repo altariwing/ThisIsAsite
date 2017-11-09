@@ -20,7 +20,7 @@ public interface Order_detailDAO_interface {
     public void insert(Order_detailVO Order_detailVO);
     
     /**
-     * update PK's row
+     * update quantity by PK
      */
     public void update(Order_detailVO Order_detailVO);
       
