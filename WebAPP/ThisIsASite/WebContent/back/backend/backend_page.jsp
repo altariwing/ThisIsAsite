@@ -113,7 +113,7 @@ EmployeeVO empVO = (EmployeeVO) session.getAttribute("empVO");
 						</div>
 						<div id="aaa" class="panel-collapse collapse" role="tabpanel"
 							aria-labelledby="panel2">
-							<div class="panel-body panelbody">管理帳號</div>
+							<a href="<%=request.getContextPath()%>/employee/select_page.jsp"><div class="panel-body panelbody">管理帳號</div></a>
 							<div class="panel-body panelbody">管理權限</div>
 						</div>
 						<!--  <div class="panel panel-primary"> -->
