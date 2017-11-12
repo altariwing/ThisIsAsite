@@ -20,12 +20,12 @@ import com.employee.model.EmployeeVO;
  */
 public class BkLoginFilter implements Filter{
 
-	private FilterConfig config;//宣告取值幹掉它
+	private FilterConfig config;//宣告
 	
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
-		config = null;
+		config = null;//幹掉它
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class BkLoginFilter implements Filter{
 	@Override
 	public void init(FilterConfig config) throws ServletException {
 		// TODO Auto-generated method stub
-		this.config = config;
+		this.config = config;//取值
 	}
 
 }
