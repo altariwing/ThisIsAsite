@@ -1,6 +1,8 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.employee.model.*"%>
+
 <!DOCTYPE html>
-<!-- saved from url=(0050)https://colorlib.com/polygon/gentelella/login.html -->
-<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
@@ -15,7 +17,7 @@
 	crossorigin="anonymous">
 
 <!-- Custom Theme Style -->
-<link href="For%20House!%20__files/custom.css" rel="stylesheet">
+<link href="css/custom.css" rel="stylesheet">
 <style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
 .login {
 	background: #F7F7F7
@@ -45,15 +47,15 @@
 		<div class="login_wrapper">
 			<div class="animate form login_form">
 				<section class="login_content">
-					<form method="post" action="bkLoginGandler">
+					<form method="post" action="login.do">
 						<h1>網站管理者登入</h1>
 						<div>
 							<input class="form-control" placeholder="帳號" required=""
-								type="text" name="account">
+								type="text" name="emp_id">
 						</div>
 						<div>
 							<input class="form-control" placeholder="密碼" required=""
-								type="password" name="password">
+								type="password" name="emp_psw">
 						</div>
 						<div>
 							<button class="btn" type="submit">登入</button>

@@ -80,7 +80,7 @@
 	<tr>
 		<td>員工密碼:<font color=red><b>*</b></font></td>
 		
-		<td><input type="TEXT" name="emp_psw" size="45" value="<%=empVO.getEmp_psw().replaceAll(".", "*")%>" /></td>
+		<td><input type="TEXT" name="emp_psw" size="45" value="<%=empVO.getEmp_psw()%>" /></td>
 	</tr>
 	<tr>
 		<td>員工姓名:<font color=red><b>*</b></font></td>

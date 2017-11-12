@@ -4,8 +4,8 @@
 <%
 EmployeeVO empVO = (EmployeeVO) session.getAttribute("empVO");
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,7 +37,7 @@ EmployeeVO empVO = (EmployeeVO) session.getAttribute("empVO");
 
 <title>你好我是後台</title>
 </head>
-<body>
+
 	<!-- <div class=""> -->
 	<nav class="navbar navbar-fixed-top main">
 	<div class="container-fluid">
@@ -242,5 +242,4 @@ EmployeeVO empVO = (EmployeeVO) session.getAttribute("empVO");
 			<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 			<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 			<!-- jquerydate picker -->
-</body>
-</html>
+

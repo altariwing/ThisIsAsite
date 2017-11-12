@@ -6,13 +6,13 @@
 EmployeeVO empVO = (EmployeeVO) session.getAttribute("empVO");
 if (empVO == null) {                                             // 如為 null, 代表此user未登入過 , 才做以下工作
     session.setAttribute("location", request.getRequestURI());       //*工作1 : 同時記下目前位置 , 以便於login.jsp登入成功後 , 能夠直接導至此網頁(須配合LoginHandler.java)
-    response.sendRedirect("employee/bklogin.jsp");   //*工作2 : 請該user去登入網頁(login.jsp) , 進行登入
+    response.sendRedirect("bklogin.jsp");   //*工作2 : 請該user去登入網頁(bklogin.jsp) , 進行登入
     return;
   }
   
 %>
 
-
+<body>
 <!-- 後端include -->
 <jsp:include page="/back/backend/backend_page.jsp" flush="true" />
 <!-- 後端include -->
@@ -35,3 +35,5 @@ if (empVO == null) {                                             // 如為 null,
 	<!-- 一定要留住的</div> ================================================================================== -->
 </div>
 <!-- 一定要留住的</div> ================================================================================== -->
+</body>
+</html>

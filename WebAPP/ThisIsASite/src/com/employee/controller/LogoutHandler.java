@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/logout.do")
-public class Logout extends HttpServlet{
+public class LogoutHandler extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	protected void processRequest(HttpServletRequest req,

@@ -26,9 +26,7 @@
     <servlet-name>DBGifReader4</servlet-name>
     <url-pattern>/DBGifReader4</url-pattern>
   </servlet-mapping>
- 
- 
- 
+  
   <servlet>
 		<servlet-name>EmployeeServlet</servlet-name>
 		<servlet-class>com.employee.controller.EmployeeServlet</servlet-class>
@@ -42,5 +40,14 @@
 		<url-pattern>/employee/emp.do</url-pattern>
 	</servlet-mapping>
 	
+<filter>
+<filter-name>BkLoginFilter</filter-name>
+<filter-class>com.filters.BkLoginFilter</filter-class>
+</filter>
+
+<filter-mapping>
+<filter-name>BkLoginFilter</filter-name>
+<url-pattern>/employee/*</url-pattern>
+</filter-mapping>
 	
 </web-app>

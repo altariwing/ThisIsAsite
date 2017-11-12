@@ -1,9 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.employee.model.*"%>
+<%
+EmployeeVO empVO = (EmployeeVO) session.getAttribute("empVO");
 
-<!DOCTYPE html>
-<head>
-<title>IBM Emp: Home</title>
+  
+%>
+
+<body>
+<!-- ï¿½ï¿½ï¿½include -->
+<jsp:include page="/back/backend/backend_page.jsp" flush="true" />
+<!-- ï¿½ï¿½ï¿½include -->
 
 <style>
 table#table-1 {
@@ -22,26 +29,42 @@ table#table-1 h4 {
 	margin-bottom: 1px;
 }
 
-h4 {
+ul h4 {
 	color: blue;
 	display: inline;
 }
 </style>
 
-</head>
-<body bgcolor='white'>
-	<h3>­û¤u¸ê®Æ¬d¸ß:</h3>
+
+
+	
+
+<!-- ï¿½@ï¿½wï¿½nï¿½dï¿½ï¿½<div> ================================================================================== -->
+<div class="col-xs-12 col-sm-10 maincontext">
+	<!-- ï¿½@ï¿½wï¿½nï¿½dï¿½ï¿½<div> ================================================================================== -->
+	<!-- ï¿½Hï¿½Uï¿½Oï¿½Aï¿½iï¿½Hï¿½ñªº¤ï¿½ï¿½e ================================================================================== -->
+	<!-- ï¿½Þ²zï¿½ï¿½ï¿½uï¿½}ï¿½l ========================================================================================= -->
+	<div class="container ">
+		
+	<h3>ï¿½ï¿½ï¿½uï¿½ï¿½Æ¬dï¿½ï¿½:</h3>
 
 	<ul>
 		<li><a href="listAllEmp.jsp"> List</a> all Emps
-			<h4>(post¤èªk).</h4> <br> <br> <br></li>
+			<h4>(postï¿½ï¿½k).</h4> <br> <br> <br></li>
 	</ul>
 
-	<h3>­û¤uºÞ²z</h3>
+	<h3>ï¿½ï¿½ï¿½uï¿½Þ²z</h3>
 	<ul>
 		<li><a href='addEmp.jsp'>Add</a> a new Emp.</li>
 	</ul>
 
+	
+	
+	</div>
+	<!-- ï¿½Hï¿½Wï¿½Oï¿½Aï¿½iï¿½Hï¿½ñªº¤ï¿½ï¿½e =========================================================================== -->
 
+	<!-- ï¿½@ï¿½wï¿½nï¿½dï¿½ï¿½</div> ============================================================================ -->
+</div>
+<!-- ï¿½@ï¿½wï¿½nï¿½dï¿½ï¿½</div> ================================================================================ -->
 </body>
 </html>

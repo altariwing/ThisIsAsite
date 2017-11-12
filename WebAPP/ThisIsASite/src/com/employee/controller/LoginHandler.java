@@ -18,7 +18,7 @@ import com.employee.model.EmployeeVO;
 
 
 
-@WebServlet("/employee/LoginGandler")
+@WebServlet("/login.do")
 public class LoginHandler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -61,7 +61,10 @@ public class LoginHandler extends HttpServlet {
 	      HttpSession session = req.getSession();
 	      
 	      session.setAttribute("empVO", empVO); //*工作1: 才在session內做已經登入過的標識
-	       try {                                                        
+	      
+	      
+	      
+	      try {                                                        
 	         String location = (String) session.getAttribute("location");
 	         if (location != null) {
 	           session.removeAttribute("location");   //*工作2: 看看有無來源網頁 (-->如有來源網頁:則重導至來源網頁)
