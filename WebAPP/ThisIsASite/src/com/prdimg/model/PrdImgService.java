@@ -39,7 +39,7 @@ public class PrdImgService {
 	
 	public PrdImgVO findFirstByPrdNo(String prd_no){
 		return dao.findByPrdNo(prd_no).get(0);
-	};
+	}
 	
 	public List<PrdImgVO> findByPrdNo(String prd_no) {
 		return dao.findByPrdNo(prd_no);
