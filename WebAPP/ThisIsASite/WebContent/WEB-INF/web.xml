@@ -27,7 +27,7 @@
     <url-pattern>/DBGifReader4</url-pattern>
   </servlet-mapping>
   
-  <servlet>
+  	<servlet>
 		<servlet-name>EmployeeServlet</servlet-name>
 		<servlet-class>com.employee.controller.EmployeeServlet</servlet-class>
 	</servlet>
@@ -39,6 +39,22 @@
 		<servlet-name>EmployeeServlet</servlet-name>
 		<url-pattern>/employee/emp.do</url-pattern>
 	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>ProductShopServlet</servlet-name>
+		<servlet-class>com.product.controller.ProductShopServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductShopServlet</servlet-name>
+		<url-pattern>/ProductShopServlet/shop.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ProductShopServlet</servlet-name>
+		<url-pattern>/shopping/shop.do</url-pattern>
+	</servlet-mapping>
+	
+	
 	
 	<servlet>
 		<servlet-name>ShowImage</servlet-name>

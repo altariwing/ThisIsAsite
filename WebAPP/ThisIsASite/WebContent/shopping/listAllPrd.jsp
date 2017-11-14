@@ -9,9 +9,6 @@
 	PrdService prdService = new PrdService();
 	List<PrdVO> list = prdService.getAll();
 	pageContext.setAttribute("list", list);
-	
-	
-	
 %>
 
 <html>
@@ -28,9 +25,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
 	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
 	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 
 
@@ -43,7 +38,7 @@ h4 {
 	overflow: hidden;
 }
 
-p {
+#prd_desc {
 	position: relative;
 	line-height: 1.4em;
 	/* 3 times the line-height to show 3 lines */
@@ -51,7 +46,7 @@ p {
 	overflow: hidden;
 }
 
-p::after {
+#prd_desc::after {
 	content: "...";
 	font-weight: bold;
 	position: absolute;
@@ -86,17 +81,29 @@ p::after {
 			<!-- col-sm-9 -->
 			<div class="col-sm-9 row">
 				<!-- a product row -->
-				<c:forEach var="PrdVO" items="${list}" >
+				<c:forEach var="PrdVO" items="${list}">
 					<div class="col-sm-4">
 						<div class="card">
 							<img class="card-img-top"
 								src="<%=request.getContextPath()%>/tool/showimage.do?getImg=prdimg&prd_no=${PrdVO.prd_no}"
-								alt="Card image cap">
+								alt="Product image">
 							<div class="card-body">
-								<h4 class="card-title">${PrdVO.prd_name}</h4>
-								<p class="card-text">With supporting text below as a natural
-									lead-in to additional content.</p>
-								<h4 class="card-text">$ ${PrdVO.prd_price}</h4>
+
+								<form action="shop.do" method="POST">
+									<input type="hidden" name="prd_no" value="${PrdVO.prd_no}">
+									<input type="hidden" name="requestURL"
+										value="<%=request.getServletPath()%>">
+									<!--送出本網頁的路徑給Controller-->
+									<input type="hidden" name="action" value="getOne_Product">
+									<a href="javascript:;" onclick="parentNode.submit();">
+										<h4 class="card-title">${PrdVO.prd_name}</h4>
+									</a>
+									
+									
+								</form>
+
+								<div id="prd_desc" class="card-text">${PrdVO.prd_desc}</div>
+								<h4 class="card-text text-danger">$${PrdVO.prd_price}</h4>
 								<a href="#" class="btn btn-primary float-right">立刻購買</a>
 							</div>
 						</div>
