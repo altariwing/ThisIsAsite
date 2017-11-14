@@ -40,6 +40,18 @@
 		<url-pattern>/employee/emp.do</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>ShowImage</servlet-name>
+		<servlet-class>com.tool.controller.ShowImage</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowImage</servlet-name>
+		<url-pattern>/tool/showimage.do</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	
 <filter>
 <filter-name>BkLoginFilter</filter-name>
 <filter-class>com.filters.BkLoginFilter</filter-class>
