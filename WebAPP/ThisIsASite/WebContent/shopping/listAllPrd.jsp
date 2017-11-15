@@ -71,10 +71,47 @@ h4 {
 			<div class="col-sm-3">
 				<div class="card">
 					<div class="card-body">
-						<h4 class="card-title">Special title treatment</h4>
-						<p class="card-text">With supporting text below as a natural
-							lead-in to additional content.</p>
-						<a href="#" class="btn btn-primary float-right">Go somewhere</a>
+						<h4 class="card-title">搜尋商品</h4>
+						<!-- ul開始 -->
+						<FORM METHOD="post"
+							ACTION="<%=request.getContextPath()%>/product/shopping.do" name="form1">
+
+							<b><font color=blue>萬用複合查詢:</font></b> <br> <b>輸入查詢字串:</b> <input
+								type="text" name="empno" value="好折凳"><br> <b>商品分類:</b>
+							<input type="radio" id="桌子" name="category" value="桌子"> <label
+								for="contactChoice1">桌子</label> <input type="radio" id="椅子"
+								name="category" value="椅子"> <label for="contactChoice2">椅子</label>
+
+							<input type="radio" id="櫃子" name="category" value="櫃子"> <label
+								for="contactChoice3">櫃子</label><br> <b>選擇品牌:</b> <select
+								name=saler>
+								<option value="1">1</option>
+								<option value="1000">1000</option>
+								<option value="5000">5000</option>
+								<option value="10000">10000</option>
+								<option value="20000">20000</option>
+								<option value="50000">50000</option>
+							</select> <br> <b>價格區間:</b> <select name=price_min>
+								<option value="1">1</option>
+								<option value="1000">1000</option>
+								<option value="5000">5000</option>
+								<option value="10000">10000</option>
+								<option value="20000">20000</option>
+								<option value="50000">50000</option>
+							</select> <span>~</span> <select name=price_max>
+								<option value="~~~"></option>
+								<option value="1000">1000</option>
+								<option value="5000">5000</option>
+								<option value="10000">10000</option>
+								<option value="20000">20000</option>
+								<option value="50000">50000</option>
+								<option value="100000">100000</option>
+							</select><br>
+
+							<!-- ul結束-->
+							<input class="btn btn-primary float-right" type="submit"
+								value="送出">
+						</FORM>
 					</div>
 				</div>
 			</div>
@@ -98,8 +135,8 @@ h4 {
 									<a href="javascript:;" onclick="parentNode.submit();">
 										<h4 class="card-title">${PrdVO.prd_name}</h4>
 									</a>
-									
-									
+
+
 								</form>
 
 								<div id="prd_desc" class="card-text">${PrdVO.prd_desc}</div>
