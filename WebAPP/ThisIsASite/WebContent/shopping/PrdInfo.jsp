@@ -59,9 +59,7 @@ h4 {
 }
 
 
-
-
-
+#responsive-flamingo {  width: 20%;  height: auto; } 
 
 </style>
 </head>
@@ -89,18 +87,19 @@ h4 {
 				<div class="row">
 					<!-- 商品圖小區塊  -->
 					<div class="owl-carousel owl-loaded owl-drag">
+						<div class="item">
 
 
+							<c:forEach var="PrdImgVO" items="${list}">
 
-						<c:forEach var="PrdImgVO" items="${list}">
 
-							<div class="item">
 								<a href="#"> <img class="card-img-top"
 									src="<%=request.getContextPath()%>/tool/showimage.do?getImg=by_img_no&img_no=${PrdImgVO.img_no}"
-									alt="Product image">
+									alt="Product image" id="responsive-flamingo">
 								</a>
-							</div>
-						</c:forEach>
+
+							</c:forEach>
+						</div>
 					</div>
 					<!-- 商品圖小區塊 結束  -->
 				</div>
@@ -109,6 +108,12 @@ h4 {
 			<!-- 主區塊右側 -->
 			<div class="col-xs-12 col-sm-6">
 				<div class="col-sx-12 col-sm-12 card">
+					<div>
+					<!-- 商家 -->
+					
+					${PrdVO.slr_no}
+					</div>
+					
 					<br>
 					<!-- 標題 -->
 					<div class="row info_title">
@@ -124,12 +129,7 @@ h4 {
 					<div class="">
 						<div class="sameRow">${PrdVO.prd_desc}</div>
 					</div>
-					<!-- 做到這裡 -->
-					>
-					<!-- 做到這裡 -->
-					>
-					<!-- 做到這裡 -->
-					>
+					 
 					<div class="card-body">
 						<div class="row">
 							數量:<select class="selectpicker" name="prd_stock">
@@ -165,7 +165,15 @@ h4 {
 		</div>
 		<!-- 主區塊第一列結束 -->
 		<div></div>
-
+<!-- two----------------------------------------------------------------------------------------------------------- -->
+		<!-- two----------------------------------------------------------------------------------------------------------- -->
+		<!-- two----------------------------------------------------------------------------------------------------------- -->
+		
+		<div class="row border border-primary">
+		
+		
+		
+		</div>
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -180,7 +188,7 @@ h4 {
 			integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
 			crossorigin="anonymous"></script>
 
-		
+
 	</div>
 </body>
 
