@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.prdimg.model.PrdImgService;
+import com.prdimg.model.PrdImgVO;
 import com.product.model.*;
 
 public class ProductShopServlet extends HttpServlet{
@@ -42,11 +44,16 @@ public class ProductShopServlet extends HttpServlet{
 				/*************************** 2.開始查詢資料 ****************************************/
 				PrdService prdSvc = new PrdService();
 				PrdVO prdVO = prdSvc.getOnByPrdNo(prd_no);
+				
+				PrdImgService prdImgService = new PrdImgService();
+				List<PrdImgVO> list = prdImgService.findByPrdNo(prdVO.getPrd_no());
 
 				/***************************
 				 * 3.查詢完成,準備轉交(Send the Success view)
 				 ************/
 				req.setAttribute("PrdVO", prdVO); // 資料庫取出的empVO物件,存入req
+				
+				req.setAttribute("list", list);// 資料庫取出的empVO物件,存入req
 				String url = "/shopping/PrdInfo.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交PrdInfo.jsp
 				successView.forward(req, res);

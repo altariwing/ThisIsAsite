@@ -5,8 +5,11 @@
 <%@ page import="com.prdimg.model.*"%>
 
 
+
 <%
 	PrdVO prdVO = (PrdVO) request.getAttribute("prdVO");
+
+	List<PrdImgVO> list = (List<PrdImgVO>) request.getAttribute("list");
 %>
 
 <html>
@@ -23,7 +26,6 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
 	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
 	crossorigin="anonymous">
-
 
 
 
@@ -55,6 +57,12 @@ h4 {
 		url(http://css88.b0.upaiyun.com/css88/2014/09/ellipsis_bg.png)
 		repeat-y;
 }
+
+
+
+
+
+
 </style>
 </head>
 
@@ -68,29 +76,31 @@ h4 {
 		<div class="row">
 			<!-- 主區塊左側 -->
 			<div class="col-xs-12 col-sm-6 row">
-				<div class="col-xs-12 col-sm-10">
+				<div class="row">
 					<!-- 商品圖大區塊  -->
 					<div>
 						<a href="#"> <img class="card-img-top"
-							src="<%=request.getContextPath()%>/tool/showimage.do?getImg=prdimg&prd_no=PD00000001"
+							src="<%=request.getContextPath()%>/tool/showimage.do?getImg=by_prd_no&prd_no=PD00000001"
 							alt="Product image">
 						</a>
 					</div>
 					<!-- 商品圖大區塊結束  -->
 				</div>
-				<div class="col-xs-12 col-sm-2">
+				<div class="row">
 					<!-- 商品圖小區塊  -->
-					<div>
-						<a href="#"> <img class="card-img-top"
-							src="<%=request.getContextPath()%>/tool/showimage.do?getImg=prdimg&prd_no=PD00000001"
-							alt="Product image">
-						</a> <a href="#"> <img class="card-img-top"
-							src="<%=request.getContextPath()%>/tool/showimage.do?getImg=prdimg&prd_no=PD00000002"
-							alt="Product image">
-						</a> <a href="#"> <img class="card-img-top"
-							src="<%=request.getContextPath()%>/tool/showimage.do?getImg=prdimg&prd_no=PD00000003"
-							alt="Product image">
-						</a>
+					<div class="owl-carousel owl-loaded owl-drag">
+
+
+
+						<c:forEach var="PrdImgVO" items="${list}">
+
+							<div class="item">
+								<a href="#"> <img class="card-img-top"
+									src="<%=request.getContextPath()%>/tool/showimage.do?getImg=by_img_no&img_no=${PrdImgVO.img_no}"
+									alt="Product image">
+								</a>
+							</div>
+						</c:forEach>
 					</div>
 					<!-- 商品圖小區塊 結束  -->
 				</div>
@@ -122,7 +132,7 @@ h4 {
 					>
 					<div class="card-body">
 						<div class="row">
-							<select class="selectpicker" name="prd_stock">
+							數量:<select class="selectpicker" name="prd_stock">
 
 
 								<%
@@ -137,7 +147,7 @@ h4 {
 								<c:forEach var="item" begin="1" end="${PrdVO.prd_stock}">
 									<option value='${item}'>${item}</option>
 								</c:forEach>
-								
+
 							</select>
 						</div>
 
@@ -146,7 +156,7 @@ h4 {
 						</div>
 						<br>
 						<div class="row">
-							<a href="#" class="btn btn-primary">立刻購買</a>
+							<a href="#" class="btn btn-primary">馬上購買</a>
 						</div>
 					</div>
 				</div>
@@ -169,6 +179,8 @@ h4 {
 			src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
 			integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
 			crossorigin="anonymous"></script>
+
+		
 	</div>
 </body>
 

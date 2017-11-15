@@ -26,7 +26,7 @@ public class ShowImage extends HttpServlet {
 		ServletOutputStream out = res.getOutputStream();
 		String getImg = req.getParameter("getImg");
 		
-		if("prdimg".equals(getImg)){
+		if("by_prd_no".equals(getImg)){
 
 			String prd_no = req.getParameter("prd_no");
 			PrdImgService prdImgSvc = new PrdImgService();
@@ -54,6 +54,42 @@ public class ShowImage extends HttpServlet {
 			
 			
 		}
+		
+		
+		
+		if("by_img_no".equals(getImg)){
+
+			Integer img_no = Integer.valueOf(req.getParameter("img_no"));
+			PrdImgService prdImgSvc = new PrdImgService();
+			try { 
+				PrdImgVO prdImgVO = prdImgSvc.findByImgNo(img_no);
+				InputStream in = new ByteArrayInputStream(prdImgVO.getPrd_img());
+				byte[] buffer = new byte[in.available()];
+				int len = 0;
+				try {
+					while ((len = in.read(buffer)) != -1)
+						out.write(buffer, 0, len);
+					out.close();
+					return;
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} catch (Exception e) {
+				FileInputStream in = new FileInputStream(getServletContext().getRealPath("/shopping/images/nopic.jpg"));
+				byte[] pic = new byte[in.available()];
+				in.read(pic);
+				out.write(pic);
+				in.close();
+			}
+		
+			
+			
+		
+			
+			
+			
+		}
+		
 		
 	}
 }

@@ -85,7 +85,7 @@ h4 {
 					<div class="col-sm-4">
 						<div class="card">
 							<img class="card-img-top"
-								src="<%=request.getContextPath()%>/tool/showimage.do?getImg=prdimg&prd_no=${PrdVO.prd_no}"
+								src="<%=request.getContextPath()%>/tool/showimage.do?getImg=by_prd_no&prd_no=${PrdVO.prd_no}"
 								alt="Product image">
 							<div class="card-body">
 
@@ -104,7 +104,7 @@ h4 {
 
 								<div id="prd_desc" class="card-text">${PrdVO.prd_desc}</div>
 								<h4 class="card-text text-danger">$${PrdVO.prd_price}</h4>
-								<a href="#" class="btn btn-primary float-right">立刻購買</a>
+								<a href="#" class="btn btn-primary float-right">馬上購買</a>
 							</div>
 						</div>
 					</div>
