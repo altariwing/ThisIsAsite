@@ -3,8 +3,10 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
 <%@ page import="com.prdimg.model.*"%>
-
-
+<jsp:useBean id="pcService" scope="session"
+	class="com.prdcategory.model.PcService" />
+<jsp:useBean id="slrService" scope="session"
+	class="com.slr.model.SlrService" />
 <%
 	PrdService prdService = new PrdService();
 	List<PrdVO> list = prdService.getAll();
@@ -74,23 +76,29 @@ h4 {
 						<h4 class="card-title">搜尋商品</h4>
 						<!-- ul開始 -->
 						<FORM METHOD="post"
-							ACTION="<%=request.getContextPath()%>/product/shopping.do" name="form1">
+							ACTION="<%=request.getContextPath()%>/product/shopping.do"
+							name="form1">
 
 							<b><font color=blue>萬用複合查詢:</font></b> <br> <b>輸入查詢字串:</b> <input
-								type="text" name="empno" value="好折凳"><br> <b>商品分類:</b>
-							<input type="radio" id="桌子" name="category" value="桌子"> <label
-								for="contactChoice1">桌子</label> <input type="radio" id="椅子"
-								name="category" value="椅子"> <label for="contactChoice2">椅子</label>
+								type="text" name="empno" value="好折凳"><br> 
+							<!-- 選擇商品分類 -->	
+							<b>商品分類:</b>
+							<c:forEach var="PcVO" items="${pcService.all}">
+								<input type="radio" id="${PcVO.cate_name}" name="category"
+									value="${PcVO.cate_name}">
+								<label for="${PcVO.cate_name}">${PcVO.cate_name}</label>
+							</c:forEach>
 
-							<input type="radio" id="櫃子" name="category" value="櫃子"> <label
-								for="contactChoice3">櫃子</label><br> <b>選擇品牌:</b> <select
-								name=saler>
-								<option value="1">1</option>
-								<option value="1000">1000</option>
-								<option value="5000">5000</option>
-								<option value="10000">10000</option>
-								<option value="20000">20000</option>
-								<option value="50000">50000</option>
+
+
+
+
+
+							<br> <b>選擇品牌:</b> <select name=saler>
+								<option value="宜家家居">宜家家居</option>
+								<option value="歐德傢俱">歐德傢俱</option>
+								<option value="特力屋">特力屋</option>
+								<option value="詩肯柚木">詩肯柚木</option>
 							</select> <br> <b>價格區間:</b> <select name=price_min>
 								<option value="1">1</option>
 								<option value="1000">1000</option>
@@ -108,9 +116,13 @@ h4 {
 								<option value="100000">100000</option>
 							</select><br>
 
+
 							<!-- ul結束-->
+							
+							<!--reset -->
+                            <input class="btn btn-primary" type ="reset" value="取消"><br>
 							<input class="btn btn-primary float-right" type="submit"
-								value="送出">
+								value="查詢">
 						</FORM>
 					</div>
 				</div>
