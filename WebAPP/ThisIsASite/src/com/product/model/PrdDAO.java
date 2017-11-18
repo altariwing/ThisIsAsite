@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -442,6 +443,68 @@ public class PrdDAO implements PrdDAO_interface {
 			}
 		}
 		return prdVO;
+	}
+
+	@Override
+	public List<PrdVO> getStateOnBymap(Map<String, String[]> map) {
+		List<PrdVO> list = new ArrayList<PrdVO>();
+		PrdVO prdVO = null;
+	
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+	
+		try {
+			
+			con = ds.getConnection();
+			String finalSQL = "SELECT * FROM Product"
+		          + jdbcUtil_CompositeQuery_Prd.get_WhereCondition(map)
+		          + "order by PRD_NO";
+			pstmt = con.prepareStatement(finalSQL);
+			System.out.println("●●finalSQL(by DAO) = "+finalSQL);
+			rs = pstmt.executeQuery();
+	
+			while (rs.next()) {
+				prdVO = new PrdVO();
+				prdVO.setPrd_no(rs.getString("prd_no"));
+				prdVO.setSlr_no(rs.getString("slr_no"));
+				prdVO.setCate_no(rs.getString("cate_no"));
+				prdVO.setPrd_name(rs.getString("prd_name"));
+				prdVO.setPrd_desc(rs.getString("prd_desc"));
+				prdVO.setPrd_stock(rs.getInt("prd_stock"));
+				prdVO.setPrd_price(rs.getInt("prd_price"));
+				prdVO.setPrd_state(rs.getString("prd_state"));
+				list.add(prdVO); // Store the row in the List
+			}
+	
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
 	}
 	
 }

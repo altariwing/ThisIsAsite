@@ -1,6 +1,7 @@
 package com.product.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,6 +13,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 
 import com.prdimg.model.PrdImgService;
 import com.prdimg.model.PrdImgVO;
@@ -35,7 +38,7 @@ public class ProductShopServlet extends HttpServlet{
 			
 
 			String requestURL = req.getParameter("requestURL"); // 送出修改的來源網頁路徑:
-																// 【/emp/listAllEmp.jsp】	
+																// 【/prd/listAllPrd.jsp】	
 
 			try {
 				/*************************** 1.接收請求參數 ****************************************/
@@ -68,7 +71,30 @@ public class ProductShopServlet extends HttpServlet{
 		}
 
 		
-		if ("update".equals(action)) {}
+		if ("listPrd_ByCompositeQuery".equals(action)) { // 來自listAllPrd.jsp 的複合查詢請求
+			
+
+			try {
+				
+				/***************************1.將輸入資料轉為Map**********************************/ 
+				//採用Map<String,String[]> getParameterMap()的方法 
+				//注意:an immutable java.util.Map 
+				Map<String, String[]> map = req.getParameterMap();
+				
+				/***************************2.開始複合查詢***************************************/
+				PrdService prdSvc = new PrdService();
+				List<PrdVO> list  = prdSvc.getAll(map);
+				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+				req.setAttribute("listEmps_ByCompositeQuery", list); // 資料庫取出的list物件,存入request
+				RequestDispatcher successView = req.getRequestDispatcher("/shopping/listAllPrd.jsp"); // 成功轉交listEmps_ByCompositeQuery.jsp
+				successView.forward(req, res);
+				
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+				RequestDispatcher failureView = req.getRequestDispatcher("/select_page.jsp");
+				failureView.forward(req, res);
+			}
+		}
 
 		if ("delete".equals(action)) {}
 
