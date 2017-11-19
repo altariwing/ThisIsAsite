@@ -4,6 +4,7 @@
 <%@ page import="com.employee.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 <%
+//這檔案是舊版 新版名稱叫: listAllEmp.jsp
 //  List<EmpVO> list = (List<EmpVO>)session.getAttribute("list"); //EmpServlet.java(Concroller), 存入session的list物件
 %> 
 

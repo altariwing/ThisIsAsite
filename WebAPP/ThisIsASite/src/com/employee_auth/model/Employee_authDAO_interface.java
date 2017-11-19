@@ -30,11 +30,24 @@ public interface Employee_authDAO_interface {
 	
 	/**
 	 * select PK from table
+	 * no used
 	 * */
 	Employee_authVO findByPK(String emp_no);
 	
+	
 	/**
 	 * select all from table
+	 * */
+	List<Employee_authVO> getByemp_no();
+	
+	/**
+	 * select all from table
+	 * */
+	List<Employee_authVO> getBybkf_no();
+	
+	/**
+	 * select all from table
+	 * dunno ITS USE
 	 * */
 	List<Employee_authVO> getAll();
 	
