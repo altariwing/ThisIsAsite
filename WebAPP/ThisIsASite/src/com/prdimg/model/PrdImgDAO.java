@@ -31,7 +31,6 @@ public class PrdImgDAO implements PrdImgDAO_interface {
 	private static final String INSERT = "INSERT INTO PRDIMG (img_no,prd_no,prd_img,state) VALUES(PRDIMG_SEQ.NEXTVAL,?,?,'上架')";
 	private static final String DELETE = "DELETE FROM PRDIMG WHERE img_no=?";
 	private static final String UPDATE = "UPDATE PRDIMG SET prd_img=? WHERE img_no=?";
-	private static final String SET_STATE = "UPDATE PRDIMG SET state=? WHERE img_no=?";
 	private static final String FIND_BY_IMGNO = "SELECT * FROM PRDIMG WHERE img_no=?";
 	private static final String FIND_BY_PRDNO = "SELECT * FROM PRDIMG WHERE prd_no=?";
 	private static final String GET_ALL = "SELECT * FROM PRDIMG";
@@ -140,39 +139,7 @@ public class PrdImgDAO implements PrdImgDAO_interface {
 		}
 	}
 
-	@Override
-	public void setState(String state, Integer img_no) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-
-		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(SET_STATE);
-
-			pstmt.setString(1, state);
-			pstmt.setInt(2, img_no);
-
-			pstmt.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
+	
 
 	@Override
 	public PrdImgVO findByImgNo(Integer img_no) {
@@ -194,7 +161,7 @@ public class PrdImgDAO implements PrdImgDAO_interface {
 				prdImgVO.setImg_no(rs.getInt("img_no"));
 				prdImgVO.setPrd_no(rs.getString("prd_no"));
 				prdImgVO.setPrd_img(rs.getBytes("prd_img"));
-				prdImgVO.setState(rs.getString("state"));
+				
 			}
 
 		} catch (SQLException e) {
@@ -238,7 +205,7 @@ public class PrdImgDAO implements PrdImgDAO_interface {
 				prdImgVO.setImg_no(rs.getInt("img_no"));
 				prdImgVO.setPrd_no(rs.getString("prd_no"));
 				prdImgVO.setPrd_img(rs.getBytes("prd_img"));
-				prdImgVO.setState(rs.getString("state"));
+				
 				list.add(prdImgVO);
 			}
 
@@ -282,7 +249,7 @@ public class PrdImgDAO implements PrdImgDAO_interface {
 				prdImgVO.setImg_no(rs.getInt("img_no"));
 				prdImgVO.setPrd_no(rs.getString("prd_no"));
 				prdImgVO.setPrd_img(rs.getBytes("prd_img"));
-				prdImgVO.setState(rs.getString("state"));
+				
 				list.add(prdImgVO);
 			}
 

@@ -58,9 +58,13 @@ h4 {
 		repeat-y;
 }
 
+.mySlides {display:none}
+.demo {cursor:pointer} 
 
-#responsive-flamingo {  width: 20%;  height: auto; } 
-
+.responsive-flamingo {
+	width: 16%;
+	height: auto;
+}
 </style>
 </head>
 
@@ -77,26 +81,31 @@ h4 {
 				<div class="row">
 					<!-- 商品圖大區塊  -->
 					<div>
-						<a href="#"> <img class="card-img-top"
-							src="<%=request.getContextPath()%>/tool/showimage.do?getImg=by_prd_no&prd_no=PD00000001"
-							alt="Product image">
-						</a>
+						<c:forEach var="PrdImgVO" items="${list}">
+
+
+								 <img class="card-img-top mySlides"
+									src="<%=request.getContextPath()%>/tool/showimage.do?getImg=by_img_no&img_no=${PrdImgVO.img_no}"
+									alt="Product image" id="">
+								
+
+							</c:forEach>
 					</div>
 					<!-- 商品圖大區塊結束  -->
 				</div>
 				<div class="row">
 					<!-- 商品圖小區塊  -->
-					<div class="owl-carousel owl-loaded owl-drag">
-						<div class="item">
+					<div class="w3-row-padding w3-section">
+						<div class="item w3-col s4">
 
-
+							<%int currentimg = 0; %>
 							<c:forEach var="PrdImgVO" items="${list}">
 
 
-								<a href="#"> <img class="card-img-top"
+								 <img class="responsive-flamingo demo w3-opacity w3-hover-opacity-off"
 									src="<%=request.getContextPath()%>/tool/showimage.do?getImg=by_img_no&img_no=${PrdImgVO.img_no}"
-									alt="Product image" id="responsive-flamingo">
-								</a>
+									alt="Product image" onmouseover="currentDiv(<%=++currentimg %>)">
+								
 
 							</c:forEach>
 						</div>
@@ -109,11 +118,11 @@ h4 {
 			<div class="col-xs-12 col-sm-6">
 				<div class="col-sx-12 col-sm-12 card">
 					<div>
-					<!-- 商家 -->
-					
-					${PrdVO.slr_no}
+						<!-- 商家 -->
+
+						${PrdVO.slr_no}
 					</div>
-					
+
 					<br>
 					<!-- 標題 -->
 					<div class="row info_title">
@@ -129,7 +138,7 @@ h4 {
 					<div class="">
 						<div class="sameRow">${PrdVO.prd_desc}</div>
 					</div>
-					 
+
 					<div class="card-body">
 						<div class="row">
 							數量:<select class="selectpicker" name="prd_stock">
@@ -165,15 +174,11 @@ h4 {
 		</div>
 		<!-- 主區塊第一列結束 -->
 		<div></div>
-<!-- two----------------------------------------------------------------------------------------------------------- -->
 		<!-- two----------------------------------------------------------------------------------------------------------- -->
 		<!-- two----------------------------------------------------------------------------------------------------------- -->
-		
-		<div class="row border border-primary">
-		
-		
-		
-		</div>
+		<!-- two----------------------------------------------------------------------------------------------------------- -->
+
+		<div class="row border border-primary"></div>
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -188,7 +193,51 @@ h4 {
 			integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
 			crossorigin="anonymous"></script>
 
+		<script>
+			var slideIndex = 1;
+			showDivs(slideIndex);
 
+			function plusDivs(n) {
+				showDivs(slideIndex += n);
+			}
+
+			function currentDiv(n) {
+				showDivs(slideIndex = n);
+			}
+
+			function showDivs(n) {
+				var i;
+				var x = document.getElementsByClassName("mySlides");
+				var dots = document.getElementsByClassName("demo");
+				if (n > x.length) {
+					slideIndex = 1
+				}
+				if (n < 1) {
+					slideIndex = x.length
+				}
+				for (i = 0; i < x.length; i++) {
+					x[i].style.display = "none";
+				}
+				for (i = 0; i < dots.length; i++) {
+					dots[i].className = dots[i].className.replace(
+							" w3-opacity-off", "");
+				}
+				x[slideIndex - 1].style.display = "block";
+				dots[slideIndex - 1].className += " w3-opacity-off";
+			}
+			
+			$(document).ready(function(){
+				$(".w3-hover-opacity-off").mouseenter(function(){
+					$(this).css("border","1px solid #efefef");
+					$(this).css("box-shadow","2px 2px 2px gray");
+				    
+				});
+				$(".w3-hover-opacity-off").mouseleave(function(){
+					$(this).css("border","none");
+					$(this).css("box-shadow","none");
+				});
+			});
+		</script>
 	</div>
 </body>
 

@@ -457,9 +457,10 @@ public class PrdDAO implements PrdDAO_interface {
 		try {
 			
 			con = ds.getConnection();
-			String finalSQL = "SELECT * FROM Product"
+			String finalSQL = "SELECT * FROM Product WHERE prd_state='ON' "
 		          + jdbcUtil_CompositeQuery_Prd.get_WhereCondition(map)
 		          + "order by PRD_NO";
+			
 			pstmt = con.prepareStatement(finalSQL);
 			System.out.println("●●finalSQL(by DAO) = "+finalSQL);
 			rs = pstmt.executeQuery();

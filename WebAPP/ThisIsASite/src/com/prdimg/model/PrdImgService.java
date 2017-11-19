@@ -29,9 +29,7 @@ public class PrdImgService {
 		return prdImgVO;
 	}
 	
-	public void setState(String state, Integer img_no) {
-		dao.setState(state, img_no);
-	}
+	
 	
 	public PrdImgVO findByImgNo(Integer img_no) {
 		return dao.findByImgNo(img_no);

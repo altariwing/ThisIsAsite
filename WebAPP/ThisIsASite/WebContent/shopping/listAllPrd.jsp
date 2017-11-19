@@ -18,6 +18,7 @@ if(list==null){
 }else {
 pageContext.setAttribute("list", list);
 }
+System.out.print(list.size()==0?"空的list":list);
 %>
 
 <html>
@@ -66,6 +67,9 @@ h4 {
 		url(http://css88.b0.upaiyun.com/css88/2014/09/ellipsis_bg.png)
 		repeat-y;
 }
+
+.responsive-flamingo {  width: 80%;  height: auto; }
+
 </style>
 </head>
 
@@ -87,7 +91,7 @@ h4 {
 
 
 							<b><font color=blue>萬用複合查詢:</font></b> <br> <b>輸入查詢字串:</b> <input
-								type="text" name="prd_name" value="好折凳"><br> 
+								type="text" name="prd_name" value="好摺凳"><br> 
 							<!-- 選擇商品分類 -->	
 							<b>商品分類:</b>
 							<c:forEach var="PcVO" items="${pcService.all}">
@@ -153,7 +157,11 @@ h4 {
 
 								<div id="prd_desc" class="card-text">${prdVO.prd_desc}</div>
 								<h4 class="card-text text-danger">$${prdVO.prd_price}</h4>
-								<a href="#" class="btn btn-primary float-right">馬上購買</a>
+								<div class="float-right">
+								<a href="#" class="btn btn-primary">加入購物車</a>
+								&nbsp
+								<a href="#" class="btn btn-primary">馬上購買</a>
+								</div>
 							</div>
 						</div>
 					</div>

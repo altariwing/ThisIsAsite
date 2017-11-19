@@ -67,15 +67,12 @@ public class jdbcUtil_CompositeQuery_Prd {
 				
 				String aCondition ="";
 				if(valueLength>1){
-					aCondition = get_aCondition_For_Oracle(key, valueAraay);
+					aCondition = get_aCondition_For_Oracle(key, valueAraay); //假如是checkbox
 				}else{
-					aCondition = get_aCondition_For_Oracle(key, value.trim());
-				}
-				
+					aCondition = get_aCondition_For_Oracle(key, value.trim()); //假如是其它
+				}				
 
-				if (count == 1)
-					whereCondition.append(" where " + aCondition);
-				else
+				
 					whereCondition.append(" and " + aCondition);
 
 				System.out.println("有送出查詢資料的欄位數count = " + count);
@@ -87,6 +84,7 @@ public class jdbcUtil_CompositeQuery_Prd {
 		return whereCondition.toString();
 	}
 
+	//測試用main方法
 	public static void main(String argv[]) {
 
 		// 配合 req.getParameterMap()方法 回傳

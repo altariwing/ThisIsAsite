@@ -5,7 +5,7 @@ public class PrdImgVO implements java.io.Serializable {
 	private Integer img_no;
 	private String prd_no;
 	private byte[] prd_img;
-	private String state;
+	
 	
 	public Integer getImg_no() {
 		return img_no;
@@ -25,11 +25,6 @@ public class PrdImgVO implements java.io.Serializable {
 	public void setPrd_img(byte[] prd_img) {
 		this.prd_img = prd_img;
 	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
+
 	
 }
