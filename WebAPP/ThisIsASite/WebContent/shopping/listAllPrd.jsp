@@ -158,9 +158,9 @@ h4 {
 								<div id="prd_desc" class="card-text">${prdVO.prd_desc}</div>
 								<h4 class="card-text text-danger">$${prdVO.prd_price}</h4>
 								<div class="float-right">
-								<a href="#" class="btn btn-primary">加入購物車</a>
+								<a href="#" class="btn btn-outline-primary">⊕加入購物車</a>
 								&nbsp
-								<a href="#" class="btn btn-primary">馬上購買</a>
+								<a href="#" class="btn btn-primary">立即購買</a>
 								</div>
 							</div>
 						</div>

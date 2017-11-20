@@ -119,69 +119,17 @@
 			<td>${empVO.emp_state.equals('Active') ? '啟用':'未啟用'}</td>
 			<td>${empVO.emp_newdate}</td>
 			<td>
-			  
-			    
-			     <button type="button" class="btn " data-toggle="modal" data-target="#exampleModal">修改</button>
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back/employee/emp.do" style="margin-bottom: 0px;">
+			     <input type="submit" value="修改">
 			     <input type="hidden" name="emp_no"  value="${empVO.emp_no}">
 			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
-			     <input type="hidden" name="action"	value="getOne_For_Update">
+			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			
-			
-			
-<!-- Modal -->
-<
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">修改員工資料</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div id="showPanel"></div> 
-	
-      <script>
-function getEmployee(){ 
-  //===建立xhr物件(填入程式碼)
-  var xhr = new XMLHttpRequest();
-  //設定好回呼函數   
-  xhr.onreadystatechange = function (){
-    if( xhr.readyState == 4){
-      if( xhr.status == 200){
-      //取回...回傳的資料
-        document.getElementById("showPanel").innerHTML = xhr.responseText;
-      }else{
-         alert( xhr.status );
-      }//xhr.status == 200
-    }//xhr.readyState == 4
-  };//onreadystatechange 
-  
-  //建立好Get連接
-  xhr.open("Post","emp.do",true); 
-  xhr.send("emp_no=EM00000001&action=getOne_For_Update2");
-  //送出請求 
-  xhr.send( null );
-}
-</script>
-      
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-    </div>  
-    </div>
-  </div>
-</div>
-			
-			
-			
-			
-			
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/employee/emp.do" style="margin-bottom: 0px;">
-			     <input class="btn " type="button" value="刪除" onclick="return confirm('確定要刪除 ?')">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back/employee/emp.do" style="margin-bottom: 0px;">
+			     <input type="submit" value="刪除" onclick="return confirm('確定要刪除 ?')">
 			     <input type="hidden" name="emp_no"  value="${empVO.emp_no}">
 			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->

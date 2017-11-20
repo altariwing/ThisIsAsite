@@ -3,14 +3,14 @@
 <%@ page import="com.employee.model.*"%>
 <%
 EmployeeVO empVO = (EmployeeVO) session.getAttribute("empVO");
-
+//select page是拿阿蓋的HTML作基底的
   
 %>
 
 <body>
-<!-- ���include -->
+<!-- include backend_page.jsp  -->
 <jsp:include page="/back/backend/backend_page.jsp" flush="true" />
-<!-- ���include -->
+<!-- include backend_page.jsp  -->
 
 <style>
 table#table-1 {

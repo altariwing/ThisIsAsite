@@ -18,7 +18,7 @@ import com.employee.model.EmployeeVO;
 
 
 
-@WebServlet("/login.do")
+@WebServlet("/back/login.do")
 public class LoginHandler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -73,7 +73,7 @@ public class LoginHandler extends HttpServlet {
 	           return;
 	         }
 	       }catch (Exception ignored) { }
-
+	      System.out.print("123");
 	      res.sendRedirect(req.getContextPath()+"/index.jsp");  //*工作3: (-->如無來源網頁:則重導至index.jsp) bklogin重導至index.jsp
 	 } //doPost
 }

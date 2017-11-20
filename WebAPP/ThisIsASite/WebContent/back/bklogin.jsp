@@ -17,7 +17,7 @@
 	crossorigin="anonymous">
 
 <!-- Custom Theme Style -->
-<link href="css/custom.css" rel="stylesheet">
+<link href="css/bklogin.css" rel="stylesheet">
 <style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
 .login {
 	background: #F7F7F7
@@ -63,8 +63,13 @@
 							<button class="btn" type="submit">登入</button>
 							<button class="btn btn-default" type="submit" formmethod="get">get登入</button>
 							<a class="btn btn-default submit"
-								href="https://colorlib.com/polygon/gentelella/login.html#">忘記密碼</a>
+								href="#">忘記密碼</a>
 						</div>
+						<%-- 錯誤表列 --%>
+				    <div class="panel-body text-center">
+				    <c:if test="${not empty errorMsgs}">
+						<font style="color:red">${errorMsgs}</font>
+					</c:if>
 					</form>
 
 

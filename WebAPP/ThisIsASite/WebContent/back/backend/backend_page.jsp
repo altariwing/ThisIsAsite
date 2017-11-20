@@ -67,7 +67,7 @@ EmployeeVO empVO = (EmployeeVO) session.getAttribute("empVO");
 				<li><a href="#"> <!-- 要先去找controller -->
 				 
                 	
-                    <a href='<%= request.getContextPath()%>/logout.do'><span class='glyphicon glyphicon-log-out'></span>登出</a>
+                    <a href='<%= request.getContextPath()%>/back/logout.do'><span class='glyphicon glyphicon-log-out'></span>登出</a>
                 </c:if>
 				</a></li>
 				
@@ -113,7 +113,7 @@ EmployeeVO empVO = (EmployeeVO) session.getAttribute("empVO");
 						</div>
 						<div id="aaa" class="panel-collapse collapse" role="tabpanel"
 							aria-labelledby="panel2">
-							<a href="<%=request.getContextPath()%>/employee/select_page.jsp"><div class="panel-body panelbody">管理帳號</div></a>
+							<a href="<%=request.getContextPath()%>/back/employee/select_page.jsp"><div class="panel-body panelbody">管理帳號</div></a>
 							<div class="panel-body panelbody">管理權限</div>
 						</div>
 						<!--  <div class="panel panel-primary"> -->

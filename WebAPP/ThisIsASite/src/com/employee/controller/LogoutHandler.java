@@ -7,14 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/logout.do")
+@WebServlet("/back/logout.do")
 public class LogoutHandler extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	protected void processRequest(HttpServletRequest req,
 	          HttpServletResponse res) throws ServletException, IOException {
 	        req.getSession().invalidate();
-	        res.sendRedirect("index.jsp");
+	        res.sendRedirect("bklogin.jsp");
 	    }
 
 	    @Override

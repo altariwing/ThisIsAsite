@@ -4,10 +4,11 @@ import java.io.*;
 import java.util.*;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 import com.employee.model.*;
-
+@WebServlet("/back/emp.do")
 public class EmployeeServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -46,6 +47,7 @@ public class EmployeeServlet extends HttpServlet {
 
 				/*************************** 2.開始新增資料 ***************************************/
 
+
 				/* emp_psw 由以下程式碼產生 */
 				final String PSWDIC = "23456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";// 包含字元
 				final int PSWLENGTH = 10;// 長度
@@ -64,14 +66,14 @@ public class EmployeeServlet extends HttpServlet {
 				/***************************
 				 * 3.新增完成,準備轉交(Send the Success view)
 				 ***********/
-				String url = "/employee/listAllEmp.jsp";
+				String url = "/back/employee/listAllEmp.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.put("Exception", e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/employee/addEmp.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("back/employee/addEmp.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -104,7 +106,7 @@ public class EmployeeServlet extends HttpServlet {
 				 * 3.查詢完成,準備轉交(Send the Success view)
 				 ************/
 				req.setAttribute("empVO", empVO); // 資料庫取出的empVO物件,存入req
-				String url = "/employee/update_emp_input.jsp";
+				String url = "/back/employee/update_emp_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交update_emp_input.jsp
 				successView.forward(req, res);
 

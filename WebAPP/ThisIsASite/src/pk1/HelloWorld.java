@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * 這個叫做HelloWorld 
  * Servlet implementation class HelloWorld
  */
 @WebServlet("/HelloWorld2")
@@ -26,13 +27,13 @@ public class HelloWorld extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 
-		res.setContentType("text/html; charset=Big5");
+		res.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = res.getWriter();
 
 		out.println("<HTML>");
 		out.println("<HEAD><TITLE>Hello World</TITLE></HEAD>");
 		out.println("<BODY>");
-		out.println("<BIG>Hello World , �@�ɧA�n !</BIG>" + (++count));
+		out.println("<BIG>Hello World , 世界你好!</BIG>" + (++count));
 		out.println("</BODY></HTML>");
 	}
 }

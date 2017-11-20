@@ -38,4 +38,7 @@ public interface Product_orderDAO_interface {
      * @return Product_orderVO object
      */
     public List<Product_orderVO> getAll();
+    
+    public int getMemAvageRate(String mem_no);
+    
 }

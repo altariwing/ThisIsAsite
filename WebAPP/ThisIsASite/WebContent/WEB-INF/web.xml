@@ -37,7 +37,7 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>EmployeeServlet</servlet-name>
-		<url-pattern>/employee/emp.do</url-pattern>
+		<url-pattern>/back/employee/emp.do</url-pattern>
 	</servlet-mapping>
 	
 	
@@ -75,7 +75,7 @@
 
 <filter-mapping>
 <filter-name>BkLoginFilter</filter-name>
-<url-pattern>/employee/*</url-pattern>
+<url-pattern>/back/employee/*</url-pattern>
 </filter-mapping>
 	
 </web-app>
