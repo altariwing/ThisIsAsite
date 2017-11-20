@@ -47,22 +47,18 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ProductShopServlet</servlet-name>
-		<url-pattern>/ProductShopServlet/shop.do</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>ProductShopServlet</servlet-name>
-		<url-pattern>/shopping/shop.do</url-pattern>
+		<url-pattern>/front/shopping/shop.do</url-pattern>
 	</servlet-mapping>
 	
 	
 	
 	<servlet>
 		<servlet-name>ShowImage</servlet-name>
-		<servlet-class>com.tool.controller.ShowImage</servlet-class>
+		<servlet-class>com.tools.controller.ShowImage</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ShowImage</servlet-name>
-		<url-pattern>/tool/showimage.do</url-pattern>
+		<url-pattern>/front/tools/showimage.do</url-pattern>
 	</servlet-mapping>
 	
 	

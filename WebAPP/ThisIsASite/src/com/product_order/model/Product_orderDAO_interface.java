@@ -39,6 +39,18 @@ public interface Product_orderDAO_interface {
      */
     public List<Product_orderVO> getAll();
     
-    public int getMemAvageRate(String mem_no);
+    /**
+     * select all from table which Mem_Rate is NOT NULL
+     * @return List<Product_orderVO object>
+     * @param mem_no
+     */
+    public List<Product_orderVO> getAllByMemRate(String mem_no);
+    
+    /**
+     * select all from table which Slr_Rate is NOT NULL
+     * @return List<Product_orderVO object>
+     * @param slr_no
+     */
+    public List<Product_orderVO> getAllBySlrRate(String slr_no);
     
 }

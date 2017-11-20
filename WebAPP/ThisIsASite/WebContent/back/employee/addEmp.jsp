@@ -44,12 +44,21 @@
 </style>
 
 </head>
+
+<!-- 後端include -->
+<jsp:include page="/back/backend/backend_page.jsp" flush="true" />
+<!-- 後端include -->
+
 <body bgcolor='white'>
+<!-- 一定要留住的<div> ================================================================================== -->
+<div class="col-xs-12 col-sm-10 maincontext">
+	<!-- 一定要留住的<div> ================================================================================== -->
+	<!-- 以下是你可以放的內容 ================================================================================== -->
 
 <table id="table-1">
 	<tr><td>
 		 <h3>員工資料新增 - addEmp.jsp</h3></td><td>
-		 <h4><a href="select_page.jsp"><img src="images/tomcat.png" width="100" height="100" border="0">回首頁</a></h4>
+		 <h4><a href="select_page.jsp"><img src="images/tomcat.png" width="100" height="100" border="0">回管理員工</a></h4>
 	</td></tr>
 </table>
 
@@ -81,7 +90,14 @@
 <br>
 <input type="hidden" name="action" value="insert">
 <input type="submit" value="送出新增"></FORM>
+
+	<!-- 以上是你可以放的內容 =========================================================================== -->
+
+	<!-- 一定要留住的</div> ============================================================================ -->
+</div>
+<!-- 一定要留住的</div> ================================================================================ -->
 </body>
+
 
 <%/* 
   java.sql.Date hiredate = null;

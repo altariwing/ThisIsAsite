@@ -57,7 +57,7 @@ public class ProductShopServlet extends HttpServlet{
 				req.setAttribute("PrdVO", prdVO); // 資料庫取出的empVO物件,存入req
 				
 				req.setAttribute("list", list);// 資料庫取出的empVO物件,存入req
-				String url = "/shopping/PrdInfo.jsp";
+				String url = "/front/shopping/PrdInfo.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交PrdInfo.jsp
 				successView.forward(req, res);
 
@@ -86,12 +86,12 @@ public class ProductShopServlet extends HttpServlet{
 				List<PrdVO> list  = prdSvc.getAll(map);
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("listEmps_ByCompositeQuery", list); // 資料庫取出的list物件,存入request
-				RequestDispatcher successView = req.getRequestDispatcher("/shopping/listAllPrd.jsp"); // 成功轉交listEmps_ByCompositeQuery.jsp
+				RequestDispatcher successView = req.getRequestDispatcher("/front/shopping/listAllPrd.jsp"); // 成功轉交listEmps_ByCompositeQuery.jsp
 				successView.forward(req, res);
 				
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
-				RequestDispatcher failureView = req.getRequestDispatcher("/select_page.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front/shopping/listAllPrd.jsp");
 				failureView.forward(req, res);
 			}
 		}

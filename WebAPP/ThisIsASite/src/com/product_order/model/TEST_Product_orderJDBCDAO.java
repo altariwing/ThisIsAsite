@@ -17,13 +17,13 @@ public class TEST_Product_orderJDBCDAO {
     	java.util.Date now = calendar.getTime();
     	java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
     	
-    	//♥Test insert(Product_orderVO Product_orderVO)
-    	System.out.println("======♥Test insert(Product_orderVO Product_orderVO)======");  	
-    	Product_orderVO pdoVO1 = new Product_orderVO();
-    	pdoVO1.setMem_no("MB00000001");
-    	pdoVO1.setSlr_no("SL00000001");
-    	pdoVO1.setCp_no("YYYYYY");
-    	dao.insert(pdoVO1);
+//    	//♥Test insert(Product_orderVO Product_orderVO)
+//    	System.out.println("======♥Test insert(Product_orderVO Product_orderVO)======");  	
+//    	Product_orderVO pdoVO1 = new Product_orderVO();
+//    	pdoVO1.setMem_no("MB00000001");
+//    	pdoVO1.setSlr_no("SL00000001");
+//    	pdoVO1.setCp_no("YYYYYY");
+//    	dao.insert(pdoVO1);
     	
 //    	//♥Test update(Product_orderVO Product_orderVO)
 //    	System.out.println("======♥Test update(Product_orderVO Product_orderVO)======");
@@ -65,7 +65,40 @@ public class TEST_Product_orderJDBCDAO {
 //   	    	System.out.print(pdo.getMem_review()+", ");
 //   	    	System.out.println(pdo.getCp_no()+", ");
 //   	    }
-   	    
+ 
+    	
+//    	//♥Test getAllByMemRate()
+//    	System.out.println("======♥Test getAllByMemRate()======");   	
+//    	List<Product_orderVO> list =dao.getAllByMemRate("MB00000003");
+//	    for(Product_orderVO pdo:list){
+//	    	System.out.print(pdo.getPdo_no()+", ");
+//	    	System.out.print(pdo.getMem_no()+", ");
+//	    	System.out.print(pdo.getSlr_no()+", ");
+//	    	System.out.print(pdo.getPdo_stat()+", ");
+//	    	System.out.print(pdo.getPdo_resr_date()+", ");
+//	    	System.out.print(pdo.getSlr_rate()+", ");
+//	    	System.out.print(pdo.getMem_rate()+", ");
+//	    	System.out.print(pdo.getMem_review()+", ");
+//	    	System.out.print(pdo.getMem_review()+", ");
+//	    	System.out.println(pdo.getCp_no()+", ");
+//	    }
+	    
+	    List<Product_orderVO> list =dao.getAllBySlrRate("SL00000002");
+	    for(Product_orderVO pdo:list){
+	    	System.out.print(pdo.getPdo_no()+", ");
+	    	System.out.print(pdo.getMem_no()+", ");
+	    	System.out.print(pdo.getSlr_no()+", ");
+	    	System.out.print(pdo.getPdo_stat()+", ");
+	    	System.out.print(pdo.getPdo_resr_date()+", ");
+	    	System.out.print(pdo.getSlr_rate()+", ");
+	    	System.out.print(pdo.getMem_rate()+", ");
+	    	System.out.print(pdo.getMem_review()+", ");
+	    	System.out.print(pdo.getMem_review()+", ");
+	    	System.out.println(pdo.getCp_no()+", ");
+	    }
+	    
+	    
+	    
 	}//end main
 	
 }

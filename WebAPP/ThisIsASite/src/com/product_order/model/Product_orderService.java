@@ -60,4 +60,24 @@ public class Product_orderService {
 	public List<Product_orderVO> getAll(){
 		return dao.getAll();
 	}
+	
+	
+	 /**
+     * get all from table which Mem_Rate is NOT NULL
+     * @return LIST<Product_orderVO object>
+     * @param mem_no
+     */
+    public List<Product_orderVO> getAllByMemRate(String mem_no){
+    	return dao.getAllByMemRate(mem_no);
+    };
+    
+    /**
+     * select all from table which Slr_Rate is NOT NULL
+     * @return LIST<Product_orderVO object>
+     * @param slr_no
+     */
+    public List<Product_orderVO> getAllBySlrRate(String slr_no){
+    	return dao.getAllBySlrRate(slr_no);
+    };
+	
 }

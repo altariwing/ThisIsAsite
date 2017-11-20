@@ -33,6 +33,8 @@ public class Product_orderDAO implements Product_orderDAO_interface {
 	private static final String DELETE = "DELETE FROM PRODUCT_ORDER WHERE PDO_NO = ?";
 	private static final String FIND_BY_PK = "SELECT * FROM PRODUCT_ORDER WHERE PDO_NO = ?";
 	private static final String GET_ALL = "SELECT * FROM PRODUCT_ORDER";
+	private static final String GET_ALL_BYSLRRATE = "SELECT * FROM PRODUCT_ORDER WHERE SLR_NO = ? AND SLR_RATE IS NOT NULL";
+	private static final String GET_ALL_BYMEMRATE = "SELECT * FROM PRODUCT_ORDER WHERE MEM_NO = ? AND MEM_RATE IS NOT NULL";
 
 	@Override
 	public void insert(Product_orderVO Product_orderVO) {
@@ -236,7 +238,7 @@ public class Product_orderDAO implements Product_orderDAO_interface {
 				list.add(product_orderVO); // Store the row in the list
 			}
 		} // Handle any SQL errors
-		  catch (SQLException se) {
+		catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 
 			// Clean up JDBC resources
@@ -263,6 +265,128 @@ public class Product_orderDAO implements Product_orderDAO_interface {
 				}
 			}
 		} // end finally
+		return list;
+	}
+
+	@Override
+	public List<Product_orderVO> getAllByMemRate(String mem_no) {
+		List<Product_orderVO> list = new ArrayList<Product_orderVO>();
+		Product_orderVO product_orderVO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_BYMEMRATE);
+			pstmt.setString(1, mem_no);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				product_orderVO = new Product_orderVO();
+				product_orderVO.setPdo_no(rs.getString("pdo_no"));
+				product_orderVO.setMem_no(rs.getString("mem_no"));
+				product_orderVO.setSlr_no(rs.getString("slr_no"));
+				product_orderVO.setPdo_stat(rs.getString("pdo_stat"));
+				product_orderVO.setPdo_resr_date(rs.getTimestamp("pdo_resr_date"));
+				product_orderVO.setSlr_rate(rs.getInt("slr_rate"));
+				product_orderVO.setMem_rate(rs.getInt("mem_rate"));
+				product_orderVO.setMem_review(rs.getString("mem_review"));
+				product_orderVO.setPdo_params(rs.getString("pdo_params"));
+				product_orderVO.setCp_no(rs.getString("cp_no"));
+
+				list.add(product_orderVO); // Store the row in the list
+			}
+
+		}
+
+		// Handle any SQL errors
+		catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		} // end finally
+		return list;
+	}
+
+	@Override
+	public List<Product_orderVO> getAllBySlrRate(String slr_no) {
+		List<Product_orderVO> list = new ArrayList<Product_orderVO>();
+		Product_orderVO product_orderVO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_BYSLRRATE);
+			pstmt.setString(1, slr_no);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				product_orderVO = new Product_orderVO();
+				product_orderVO.setPdo_no(rs.getString("pdo_no"));
+				product_orderVO.setMem_no(rs.getString("mem_no"));
+				product_orderVO.setSlr_no(rs.getString("slr_no"));
+				product_orderVO.setPdo_stat(rs.getString("pdo_stat"));
+				product_orderVO.setPdo_resr_date(rs.getTimestamp("pdo_resr_date"));
+				product_orderVO.setSlr_rate(rs.getInt("slr_rate"));
+				product_orderVO.setMem_rate(rs.getInt("mem_rate"));
+				product_orderVO.setMem_review(rs.getString("mem_review"));
+				product_orderVO.setPdo_params(rs.getString("pdo_params"));
+				product_orderVO.setCp_no(rs.getString("cp_no"));
+
+				list.add(product_orderVO); // Store the row in the list
+			}
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		} // end finally
+
 		return list;
 	}
 
