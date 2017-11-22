@@ -67,8 +67,8 @@ public class Product_orderService {
      * @return LIST<Product_orderVO object>
      * @param mem_no
      */
-    public List<Product_orderVO> getAllByMemRate(String mem_no){
-    	return dao.getAllByMemRate(mem_no);
+    public List<Product_orderVO> getAllByMemNo(String mem_no){
+    	return dao.getAllByMemNo(mem_no);
     };
     
     /**
@@ -76,8 +76,28 @@ public class Product_orderService {
      * @return LIST<Product_orderVO object>
      * @param slr_no
      */
-    public List<Product_orderVO> getAllBySlrRate(String slr_no){
-    	return dao.getAllBySlrRate(slr_no);
+    public List<Product_orderVO> getAllBySlrNo(String slr_no){
+    	return dao.getAllBySlrNo(slr_no);
     };
 	
+    /**
+     * get average rate of mem_rate
+     * ONLY NOT NULL COLUMN SELECTED
+     * @return Double
+     * @param mem_no
+     */
+    public Double getMemRate(String mem_no){
+    	return dao.getMemAvgRate(mem_no);   	
+    };
+    
+    /**
+     * get average rate of slr_rate
+     * ONLY NOT NULL COLUMN SELECTED
+     * @return Double
+     * @param slr_no
+     */
+    public Double getSlrAvgRate (String slr_no){
+    	return dao.getSlrAvgRate(slr_no);
+    };
+    
 }

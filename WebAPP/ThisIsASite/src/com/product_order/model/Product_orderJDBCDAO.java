@@ -7,8 +7,8 @@ import java.util.List;
 public class Product_orderJDBCDAO implements Product_orderDAO_interface {
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "BA104";
-	String passwd = "123456";
+	String userid = "BA104G5";
+	String passwd = "ba104g5";
 	private static final String INSERT = "INSERT INTO PRODUCT_ORDER(PDO_NO, MEM_NO, SLR_NO,CP_NO)"
 			+ "VALUES('OD'||TO_CHAR(SYSDATE,'RRMMDD')||'-'||(LPAD(TO_CHAR(PDO_NO_SEQ.NEXTVAL),6,'0')), ?, ?, ?)";
 
@@ -18,7 +18,9 @@ public class Product_orderJDBCDAO implements Product_orderDAO_interface {
 	private static final String GET_ALL = "SELECT * FROM PRODUCT_ORDER";
 	private static final String GET_ALL_BYSLRRATE = "SELECT * FROM PRODUCT_ORDER WHERE SLR_NO = ? AND SLR_RATE IS NOT NULL";
 	private static final String GET_ALL_BYMEMRATE = "SELECT * FROM PRODUCT_ORDER WHERE MEM_NO = ? AND MEM_RATE IS NOT NULL";
-
+	private static final String GET_AVG_SLR_RATE = "select AVG(SLR_RATE) from product_order where slr_no = ? AND SLR_RATE is not NULL";
+	private static final String GET_AVG_MEM_RATE = "select AVG(MEM_RATE) from product_order where mem_no = ? AND MEM_RATE is not NULL";
+	
 	@Override
 	public void insert(Product_orderVO Product_orderVO) {
 		int updateCount = 0;
@@ -273,7 +275,7 @@ public class Product_orderJDBCDAO implements Product_orderDAO_interface {
 	}
 
 	@Override
-	public List<Product_orderVO> getAllByMemRate(String mem_no) {
+	public List<Product_orderVO> getAllByMemNo(String mem_no) {
 		List<Product_orderVO> list = new ArrayList<Product_orderVO>();
 		Product_orderVO product_orderVO = null;
 
@@ -337,7 +339,7 @@ public class Product_orderJDBCDAO implements Product_orderDAO_interface {
 	};
 
 	@Override
-	public List<Product_orderVO> getAllBySlrRate(String slr_no) {
+	public List<Product_orderVO> getAllBySlrNo(String slr_no) {
 		List<Product_orderVO> list = new ArrayList<Product_orderVO>();
 		Product_orderVO product_orderVO = null;
 
@@ -398,6 +400,109 @@ public class Product_orderJDBCDAO implements Product_orderDAO_interface {
 		} // end finally
 
 		return list;
+	}
+
+	@Override
+	public Double getMemAvgRate(String mem_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Double avg = 0.0;
+		try{
+			Class.forName(driver);
+			con = DriverManager.getConnection(url,userid,passwd);
+			pstmt = con.prepareStatement(GET_AVG_MEM_RATE);
+			pstmt.setString(1, mem_no);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				avg = (Double) rs.getDouble(1);
+			}
+						
+		}catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		} // end finally
+		return avg;
+	}
+
+	@Override
+	public Double getSlrAvgRate(String slr_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Double avg = 0.0;
+		try{
+			Class.forName(driver);
+			con = DriverManager.getConnection(url,userid,passwd);
+			pstmt = con.prepareStatement(GET_AVG_SLR_RATE);
+			pstmt.setString(1, slr_no);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				avg = rs.getDouble(1);
+			}
+		}catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		} // end finally
+		return avg;
 	};
 
+	
+	
 }

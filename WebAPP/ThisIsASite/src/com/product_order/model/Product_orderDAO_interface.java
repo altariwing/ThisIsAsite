@@ -44,13 +44,29 @@ public interface Product_orderDAO_interface {
      * @return List<Product_orderVO object>
      * @param mem_no
      */
-    public List<Product_orderVO> getAllByMemRate(String mem_no);
+    public List<Product_orderVO> getAllByMemNo(String mem_no);
     
     /**
      * select all from table which Slr_Rate is NOT NULL
      * @return List<Product_orderVO object>
      * @param slr_no
      */
-    public List<Product_orderVO> getAllBySlrRate(String slr_no);
+    public List<Product_orderVO> getAllBySlrNo(String slr_no);
+    
+    /**
+     * get average rate of mem_rate
+     * ONLY NOT NULL COLUMN SELECTED
+     * @return Double
+     * @param mem_no
+     */
+    public Double getMemAvgRate(String mem_no);
+    
+    /**
+     *  get average rate of slr_rate
+     *  ONLY NOT NULL COLUMN SELECTED
+     * @return Double
+     * @param slr_no
+     */
+    public Double getSlrAvgRate (String slr_no);
     
 }

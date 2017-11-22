@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
+<%@ page import="com.product_order.model.*"%>
 <%@ page import="com.prdimg.model.*"%>
 
 
@@ -131,7 +132,8 @@ h4 {
 				<div class="col-sx-12 col-sm-12 card">
 					<div>
 						<!-- 商家 -->
-
+Product_orderService product_orderService = new Product_orderService();
+	LIST<Product_orderVO> list = product_orderService.getAllBySlrRate(slr_no);
 						${PrdVO.slr_no}
 					</div>
 
