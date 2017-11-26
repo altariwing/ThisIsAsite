@@ -58,7 +58,7 @@ System.out.println(cartlist.size());
 				String mem_no = memVO.getMem_no();
 				// 折價卷cp_no 在參數裡
 				String cp_no = req.getParameter("cp_no");
-				if(cp_no.equals(null)){cp_no="NULL";}
+				if(cp_no==null){cp_no="NULL";}
 
 				/***************************2.開始新增資料***************************************/				
 				

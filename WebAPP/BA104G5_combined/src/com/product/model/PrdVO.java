@@ -9,7 +9,14 @@ public class PrdVO implements java.io.Serializable {
 	private Integer prd_stock;
 	private Integer prd_price;
 	private String prd_state;
+	private Integer quantity;
 	
+	public Integer getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
 	public String getPrd_no() {
 		return prd_no;
 	}
@@ -58,5 +65,30 @@ public class PrdVO implements java.io.Serializable {
 	public void setPrd_state(String prd_state) {
 		this.prd_state = prd_state;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((slr_no == null) ? 0 : slr_no.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PrdVO other = (PrdVO) obj;
+		if (slr_no == null) {
+			if (other.slr_no != null)
+				return false;
+		} else if (!slr_no.equals(other.slr_no))
+			return false;
+		return true;
+	}
+	
+	
 	
 }
