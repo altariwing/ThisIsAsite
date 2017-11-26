@@ -6,9 +6,14 @@ import java.util.List;
  * Product_orderDAO_interface
  * insert
  * update
+ * update_to_cancel
  * delete
  * findByPK
  * getAll
+ * getAllByMemNo
+ * getAllBySlrNo
+ * getMemAvgRate
+ * getSlrAvgRate 
  */
 public interface Product_orderDAO_interface {
 	
@@ -22,6 +27,8 @@ public interface Product_orderDAO_interface {
      */
     public void update(Product_orderVO Product_orderVO);
       
+   
+    
     /**
      * delete that pdo_no's row
      */
@@ -54,19 +61,16 @@ public interface Product_orderDAO_interface {
     public List<Product_orderVO> getAllBySlrNo(String slr_no);
     
     /**
-     * get average rate of mem_rate
-     * ONLY NOT NULL COLUMN SELECTED
+     * get average rate of that member
      * @return Double
      * @param mem_no
      */
     public Double getMemAvgRate(String mem_no);
     
     /**
-     *  get average rate of slr_rate
-     *  ONLY NOT NULL COLUMN SELECTED
+     * select all from table which slr_no is NOT NULL
      * @return Double
      * @param slr_no
      */
     public Double getSlrAvgRate (String slr_no);
-    
 }

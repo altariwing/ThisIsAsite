@@ -32,9 +32,9 @@ public class TEST_Product_orderJDBCDAO {
 //    	pdoVO2.setPdo_no("OD171108-000002");
 //    	dao.update(pdoVO2);
         
-//    	//♥Test delete(String pdo_no) 
-//    	System.out.println("======♥Test delete(String pdo_no) ======");
-//    	dao.delete("OD171109-000005");
+    	//♥Test delete(String pdo_no) 
+    	System.out.println("======♥Test delete(String pdo_no) ======");
+    	dao.delete("OD171121-000012");
     	       
 //    	//♥Test findByPK(String pdo_no)
 //    	System.out.println("======♥Test findByPK(String pdo_no)======");

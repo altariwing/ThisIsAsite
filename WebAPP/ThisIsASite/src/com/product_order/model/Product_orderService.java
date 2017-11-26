@@ -80,6 +80,7 @@ public class Product_orderService {
     	return dao.getAllBySlrNo(slr_no);
     };
 	
+	
     /**
      * get average rate of mem_rate
      * ONLY NOT NULL COLUMN SELECTED
@@ -99,5 +100,4 @@ public class Product_orderService {
     public Double getSlrAvgRate (String slr_no){
     	return dao.getSlrAvgRate(slr_no);
     };
-    
 }

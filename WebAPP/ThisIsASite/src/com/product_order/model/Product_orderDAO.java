@@ -20,7 +20,7 @@ public class Product_orderDAO implements Product_orderDAO_interface {
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/BA104G5");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -31,6 +31,7 @@ public class Product_orderDAO implements Product_orderDAO_interface {
 
 	private static final String UPDATE = "UPDATE PRODUCT_ORDER set PDO_STAT=? where PDO_NO =?";
 	private static final String DELETE = "DELETE FROM PRODUCT_ORDER WHERE PDO_NO = ?";
+	private static final String DELETE_ORDER_DETAILs = "DELETE FROM ORDER_DETAIL WHERE PDO_NO = ?";
 	private static final String FIND_BY_PK = "SELECT * FROM PRODUCT_ORDER WHERE PDO_NO = ?";
 	private static final String GET_ALL = "SELECT * FROM PRODUCT_ORDER";
 	private static final String GET_ALL_BYSLRRATE = "SELECT * FROM PRODUCT_ORDER WHERE SLR_NO = ? AND SLR_RATE IS NOT NULL";
@@ -120,15 +121,35 @@ public class Product_orderDAO implements Product_orderDAO_interface {
 		try {
 
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(DELETE);
-
+			/*---------------交易開始--------------- */
+			con.setAutoCommit(false);
+			// 先刪OrderDetail
+			pstmt = con.prepareStatement(DELETE_ORDER_DETAILs);
 			pstmt.setString(1, pdo_no);
-
 			pstmt.executeUpdate();
 
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// 先刪ProductOrder
+			pstmt = con.prepareStatement(DELETE);
+			pstmt.setString(1, pdo_no);
+			pstmt.executeUpdate();
 
+			con.commit();
+			con.setAutoCommit(true);
+			/* ---------------交易結束--------------- */
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			if(con!=null){
+				try{
+					//交易未完成rollback
+					con.rollback();
+				} catch (SQLException excep){
+					throw new RuntimeException("rollback error occured. " + excep.getMessage());
+				}
+			} //end if
+
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			
 			// Clean up JDBC resources
 		} finally {
 			if (pstmt != null) {

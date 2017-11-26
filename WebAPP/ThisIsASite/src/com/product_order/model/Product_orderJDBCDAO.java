@@ -14,13 +14,14 @@ public class Product_orderJDBCDAO implements Product_orderDAO_interface {
 
 	private static final String UPDATE = "UPDATE PRODUCT_ORDER set PDO_STAT=? where PDO_NO =?";
 	private static final String DELETE = "DELETE FROM PRODUCT_ORDER WHERE PDO_NO = ?";
+	private static final String DELETE_ORDER_DETAILs = "DELETE FROM ORDER_DETAIL WHERE PDO_NO = ?";
 	private static final String FIND_BY_PK = "SELECT * FROM PRODUCT_ORDER WHERE PDO_NO = ?";
 	private static final String GET_ALL = "SELECT * FROM PRODUCT_ORDER";
 	private static final String GET_ALL_BYSLRRATE = "SELECT * FROM PRODUCT_ORDER WHERE SLR_NO = ? AND SLR_RATE IS NOT NULL";
 	private static final String GET_ALL_BYMEMRATE = "SELECT * FROM PRODUCT_ORDER WHERE MEM_NO = ? AND MEM_RATE IS NOT NULL";
 	private static final String GET_AVG_SLR_RATE = "select AVG(SLR_RATE) from product_order where slr_no = ? AND SLR_RATE is not NULL";
 	private static final String GET_AVG_MEM_RATE = "select AVG(MEM_RATE) from product_order where mem_no = ? AND MEM_RATE is not NULL";
-	
+
 	@Override
 	public void insert(Product_orderVO Product_orderVO) {
 		int updateCount = 0;
@@ -104,27 +105,53 @@ public class Product_orderJDBCDAO implements Product_orderDAO_interface {
 		} // end finally
 	}
 
+	
+	
+
 	@Override
 	public void delete(String pdo_no) {
-		int updateCount = 0;
+		int updateCount_OrderDetail = 0;
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(DELETE);
 
+			/*---------------交易開始--------------- */
+			con.setAutoCommit(false);
+			// 先刪OrderDetail
+			pstmt = con.prepareStatement(DELETE_ORDER_DETAILs);
 			pstmt.setString(1, pdo_no);
+			updateCount_OrderDetail = pstmt.executeUpdate();
 
-			updateCount = pstmt.executeUpdate();
-			System.out.println("成功刪除" + updateCount + "筆資料");
+			// 先刪ProductOrder
+			pstmt = con.prepareStatement(DELETE);
+			pstmt.setString(1, pdo_no);
+			pstmt.executeUpdate();
 
+			con.commit();
+			con.setAutoCommit(true);
+			/* ---------------交易結束--------------- */
+
+			System.out.println("成功刪除訂單: " + pdo_no + " (同時刪除" + updateCount_OrderDetail + "筆訂單明細)");
+
+			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 
 			// Handle any SQL errors
 		} catch (SQLException se) {
+			if (con != null) {
+				try {
+					// 交易未完成 rollback
+					con.rollback();
+				} catch (SQLException excep) {
+					throw new RuntimeException("rollback error occured. " + excep.getMessage());
+				}
+			} // end if
+
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 
 			// Clean up JDBC resources
@@ -408,18 +435,18 @@ public class Product_orderJDBCDAO implements Product_orderDAO_interface {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		Double avg = 0.0;
-		try{
+		try {
 			Class.forName(driver);
-			con = DriverManager.getConnection(url,userid,passwd);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_AVG_MEM_RATE);
 			pstmt.setString(1, mem_no);
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()){
+
+			if (rs.next()) {
 				avg = (Double) rs.getDouble(1);
 			}
-						
-		}catch (ClassNotFoundException e) {
+
+		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 
 			// Handle any SQL errors
@@ -459,17 +486,17 @@ public class Product_orderJDBCDAO implements Product_orderDAO_interface {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		Double avg = 0.0;
-		try{
+		try {
 			Class.forName(driver);
-			con = DriverManager.getConnection(url,userid,passwd);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_AVG_SLR_RATE);
 			pstmt.setString(1, slr_no);
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()){
+
+			if (rs.next()) {
 				avg = rs.getDouble(1);
 			}
-		}catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 
 			// Handle any SQL errors
@@ -503,6 +530,4 @@ public class Product_orderJDBCDAO implements Product_orderDAO_interface {
 		return avg;
 	};
 
-	
-	
 }

@@ -32,9 +32,9 @@ public class TEST_Product_orderJDBCDAO {
 //    	pdoVO2.setPdo_no("OD171108-000002");
 //    	dao.update(pdoVO2);
         
-//    	//♥Test delete(String pdo_no) 
-//    	System.out.println("======♥Test delete(String pdo_no) ======");
-//    	dao.delete("OD171109-000005");
+    	//♥Test delete(String pdo_no) 
+    	System.out.println("======♥Test delete(String pdo_no) ======");
+    	dao.delete("OD171121-000012");
     	       
 //    	//♥Test findByPK(String pdo_no)
 //    	System.out.println("======♥Test findByPK(String pdo_no)======");
@@ -83,28 +83,22 @@ public class TEST_Product_orderJDBCDAO {
 //	    	System.out.println(pdo.getCp_no()+", ");
 //	    }
 	    
-//	    List<Product_orderVO> list =dao.getAllBySlrNo("SL00000002");
-//	    for(Product_orderVO pdo:list){
-//	    	System.out.print(pdo.getPdo_no()+", ");
-//	    	System.out.print(pdo.getMem_no()+", ");
-//	    	System.out.print(pdo.getSlr_no()+", ");
-//	    	System.out.print(pdo.getPdo_stat()+", ");
-//	    	System.out.print(pdo.getPdo_resr_date()+", ");
-//	    	System.out.print(pdo.getSlr_rate()+", ");
-//	    	System.out.print(pdo.getMem_rate()+", ");
-//	    	System.out.print(pdo.getMem_review()+", ");
-//	    	System.out.print(pdo.getMem_review()+", ");
-//	    	System.out.println(pdo.getCp_no()+", ");
-//	    }
+	    List<Product_orderVO> list =dao.getAllBySlrNo("SL00000002");
+	    for(Product_orderVO pdo:list){
+	    	System.out.print(pdo.getPdo_no()+", ");
+	    	System.out.print(pdo.getMem_no()+", ");
+	    	System.out.print(pdo.getSlr_no()+", ");
+	    	System.out.print(pdo.getPdo_stat()+", ");
+	    	System.out.print(pdo.getPdo_resr_date()+", ");
+	    	System.out.print(pdo.getSlr_rate()+", ");
+	    	System.out.print(pdo.getMem_rate()+", ");
+	    	System.out.print(pdo.getMem_review()+", ");
+	    	System.out.print(pdo.getMem_review()+", ");
+	    	System.out.println(pdo.getCp_no()+", ");
+	    }
 	    
-//    	//♥Test getMemAvgRate()
-//    	System.out.println(dao.getMemAvgRate("MB00000003"));
-//    	System.out.println(dao.getMemAvgRate("MB00000001"));
-//    	
-    	//♥Test getSlrAvgRate()
-    	System.out.println(dao.getSlrAvgRate("SL00000001"));
-    	System.out.println(dao.getSlrAvgRate("SL00000002"));
-    	
+	    
+	    
 	}//end main
 	
 }

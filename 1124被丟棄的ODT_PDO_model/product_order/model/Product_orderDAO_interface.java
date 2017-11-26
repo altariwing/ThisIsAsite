@@ -6,6 +6,7 @@ import java.util.List;
  * Product_orderDAO_interface
  * insert
  * update
+ * update_to_cancel
  * delete
  * findByPK
  * getAll
@@ -26,6 +27,8 @@ public interface Product_orderDAO_interface {
      */
     public void update(Product_orderVO Product_orderVO);
       
+   
+    
     /**
      * delete that pdo_no's row
      */
